@@ -1,0 +1,6 @@
+- Learning Goals:
+    * This first chapter introduces the entire STM32 portfolio.
+
+    * It introduces this family of microcontrollers subdivided in 17 distinct sub-families. They share a set of specs and present features specific to some series.
+
+    * It also quickly introduces the ARM Cortex-M architecture.
