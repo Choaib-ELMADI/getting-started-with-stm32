@@ -5,12 +5,13 @@
         - Cortex-M: (eMbedded)    => designed and optimized for low-cost embedded systems market (IoT, automation, connectivity, ...).
         - Cortex-R: (Real-time)   => designed for embedded systems where reliability, high availability, fault tolerance and real-time response are essential.
 
+2. Cortex-M Processors Features:
     * Cortex-M Core Registers:
-        => View image: "./Images/Figure 1.2 - ARM Cortex-M core registers.png"
+        => View image: "Images/Figure 1.2 - ARM Cortex-M core registers.png"
 
     * Memory Map:
         . ARM defines a standardized memory address space common to all Cortex-M cores.
-        => View images: "./Images/Figure 1.3 - Cortex-M fixed memory address space.png", "./Images/Figure 1.4 - Memory layout of Code Area on STM32 MCUs.png"
+        => View images: "Images/Figure 1.3 - Cortex-M fixed memory address space.png", "Images/Figure 1.4 - Memory layout of Code Area on STM32 MCUs.png"
 
         . Bit-banding is a feature that enables every single bit in the bit-band region to be directly accessible (r/w/m without a sequence of instructions).
         . Bit-band alias is a region in memory that stores the addresses of each bit in the bit-band region.
