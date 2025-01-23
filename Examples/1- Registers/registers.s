@@ -10,7 +10,7 @@
 	.eabi_attribute 30, 6	@ Tag_ABI_optimization_goals
 	.eabi_attribute 34, 1	@ Tag_CPU_unaligned_access
 	.eabi_attribute 18, 4	@ Tag_ABI_PCS_wchar_t
-	.file	"1_registers.c"
+	.file	"registers.c"
 @ GNU C17 (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) version 13.3.1 20240614 (arm-none-eabi)
 @	compiled by GNU C version 9.3-win32 20200320, GMP version 6.2.1, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-1-g835ea3a-GMP
 
@@ -19,7 +19,7 @@
 	.text
 .Ltext0:
 	.cfi_sections	.debug_frame
-	.file 1 "1_registers.c"
+	.file 1 "registers.c"
 	.align	1
 	.global	main
 	.syntax unified
@@ -40,21 +40,21 @@ main:
 	.cfi_def_cfa_offset 16
 	add	r7, sp, #0	@,,
 	.cfi_def_cfa_register 7
-@ 1_registers.c:6:     a = 3;
+@ registers.c:6:     a = 3;
 	.loc 1 6 7
 	movs	r3, #3	@ tmp114,
 	strb	r3, [r7, #7]	@ tmp115, a
-@ 1_registers.c:7:     b = 2;
+@ registers.c:7:     b = 2;
 	.loc 1 7 7
 	movs	r3, #2	@ tmp116,
 	strb	r3, [r7, #6]	@ tmp117, b
-@ 1_registers.c:8:     c = a * b;
+@ registers.c:8:     c = a * b;
 	.loc 1 8 7
 	ldrb	r2, [r7, #7]	@ tmp118, a
 	ldrb	r3, [r7, #6]	@ tmp119, b
 	smulbb	r3, r2, r3	@ tmp121, tmp118, tmp119
 	strb	r3, [r7, #5]	@ tmp122, c
-@ 1_registers.c:9: }
+@ registers.c:9: }
 	.loc 1 9 1
 	nop	
 	adds	r7, r7, #12	@,,
@@ -289,10 +289,10 @@ main:
 	.section	.debug_line,"",%progbits
 .Ldebug_line0:
 	.section	.debug_str,"MS",%progbits,1
+.LASF6:
+	.ascii	"long long int\000"
 .LASF9:
 	.ascii	"__uint8_t\000"
-.LASF12:
-	.ascii	"1_registers.c\000"
 .LASF1:
 	.ascii	"unsigned char\000"
 .LASF5:
@@ -307,13 +307,12 @@ main:
 	.ascii	"long long unsigned int\000"
 .LASF10:
 	.ascii	"uint8_t\000"
-.LASF6:
-	.ascii	"long long int\000"
+.LASF12:
+	.ascii	"registers.c\000"
 .LASF13:
 	.ascii	"C:\\\\Users\\\\Choaib ELMADI\\\\Documents\\\\D.I.F."
-	.ascii	"Y\\\\2. Electronics\\\\7. STM32\\\\Docs\\\\I Introd"
-	.ascii	"uction\\\\Chapter 1 - Introduction to STM32 MCU Por"
-	.ascii	"tfolio\\\\Examples\000"
+	.ascii	"Y\\\\2. Electronics\\\\7. STM32 Repo\\\\Examples\\\\"
+	.ascii	"1- Registers\000"
 .LASF2:
 	.ascii	"short int\000"
 .LASF4:

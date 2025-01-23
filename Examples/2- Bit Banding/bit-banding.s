@@ -10,7 +10,7 @@
 	.eabi_attribute 30, 6	@ Tag_ABI_optimization_goals
 	.eabi_attribute 34, 1	@ Tag_CPU_unaligned_access
 	.eabi_attribute 18, 4	@ Tag_ABI_PCS_wchar_t
-	.file	"2_bit-band-alias.c"
+	.file	"bit-banding.c"
 @ GNU C17 (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) version 13.3.1 20240614 (arm-none-eabi)
 @	compiled by GNU C version 9.3-win32 20200320, GMP version 6.2.1, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-1-g835ea3a-GMP
 
@@ -19,7 +19,7 @@
 	.text
 .Ltext0:
 	.cfi_sections	.debug_frame
-	.file 1 "2_bit-band-alias.c"
+	.file 1 "bit-banding.c"
 	.section	.rodata
 	.align	2
 .LC0:
@@ -45,64 +45,64 @@ main:
 	.cfi_def_cfa_offset 32
 	add	r7, sp, #0	@,,
 	.cfi_def_cfa_register 7
-@ 2_bit-band-alias.c:14:     int *alias_base_address      = (unsigned *) 0x22000000;
+@ bit-banding.c:14:     int *alias_base_address      = (unsigned *) 0x22000000;
 	.loc 1 14 10
 	mov	r3, #570425344	@ tmp123,
 	str	r3, [r7, #20]	@ tmp123, alias_base_address
-@ 2_bit-band-alias.c:15:     int *bit_band_base_address   = (unsigned *) 0x20000000;
+@ bit-banding.c:15:     int *bit_band_base_address   = (unsigned *) 0x20000000;
 	.loc 1 15 10
 	mov	r3, #536870912	@ tmp124,
 	str	r3, [r7, #16]	@ tmp124, bit_band_base_address
-@ 2_bit-band-alias.c:16:     int *bit_band_memory_address = (unsigned *) 0x20000200;
+@ bit-banding.c:16:     int *bit_band_memory_address = (unsigned *) 0x20000200;
 	.loc 1 16 10
 	ldr	r3, .L2	@ tmp125,
 	str	r3, [r7, #12]	@ tmp125, bit_band_memory_address
-@ 2_bit-band-alias.c:17:     int bit_order = 4;
+@ bit-banding.c:17:     int bit_order = 4;
 	.loc 1 17 9
 	movs	r3, #4	@ tmp126,
 	str	r3, [r7, #8]	@ tmp126, bit_order
-@ 2_bit-band-alias.c:20:     *bit_band_memory_address = 0xFF;
+@ bit-banding.c:20:     *bit_band_memory_address = 0xFF;
 	.loc 1 20 30
 	ldr	r3, [r7, #12]	@ tmp127, bit_band_memory_address
 	movs	r2, #255	@ tmp128,
 	str	r2, [r3]	@ tmp128, *bit_band_memory_address_12
-@ 2_bit-band-alias.c:21:     printf("\n %d \n", *bit_band_memory_address);
+@ bit-banding.c:21:     printf("\n %d \n", *bit_band_memory_address);
 	.loc 1 21 5
 	ldr	r3, [r7, #12]	@ tmp129, bit_band_memory_address
 	ldr	r3, [r3]	@ _1, *bit_band_memory_address_12
 	mov	r1, r3	@, _1
 	ldr	r0, .L2+4	@,
 	bl	printf		@
-@ 2_bit-band-alias.c:23:     alias_address = (unsigned *) ((alias_base_address) + (32 * (bit_band_memory_address - bit_band_base_address)) + (bit_order * 4));
+@ bit-banding.c:23:     alias_address = (unsigned *) ((alias_base_address) + (32 * (bit_band_memory_address - bit_band_base_address)) + (bit_order * 4));
 	.loc 1 23 89
 	ldr	r2, [r7, #12]	@ tmp130, bit_band_memory_address
 	ldr	r3, [r7, #16]	@ tmp131, bit_band_base_address
 	subs	r3, r2, r3	@ _2, tmp130, tmp131
 	asrs	r3, r3, #2	@ tmp132, _2,
-@ 2_bit-band-alias.c:23:     alias_address = (unsigned *) ((alias_base_address) + (32 * (bit_band_memory_address - bit_band_base_address)) + (bit_order * 4));
+@ bit-banding.c:23:     alias_address = (unsigned *) ((alias_base_address) + (32 * (bit_band_memory_address - bit_band_base_address)) + (bit_order * 4));
 	.loc 1 23 115
 	lsls	r2, r3, #3	@ _5, _4,
 	ldr	r3, [r7, #8]	@ bit_order.0_6, bit_order
 	add	r3, r3, r2	@ _7, _5
 	lsls	r3, r3, #4	@ _8, _7,
-@ 2_bit-band-alias.c:23:     alias_address = (unsigned *) ((alias_base_address) + (32 * (bit_band_memory_address - bit_band_base_address)) + (bit_order * 4));
+@ bit-banding.c:23:     alias_address = (unsigned *) ((alias_base_address) + (32 * (bit_band_memory_address - bit_band_base_address)) + (bit_order * 4));
 	.loc 1 23 19
 	ldr	r2, [r7, #20]	@ tmp134, alias_base_address
 	add	r3, r3, r2	@ tmp133, tmp134
 	str	r3, [r7, #4]	@ tmp133, alias_address
-@ 2_bit-band-alias.c:25:     *alias_address = 0;
+@ bit-banding.c:25:     *alias_address = 0;
 	.loc 1 25 20
 	ldr	r3, [r7, #4]	@ tmp135, alias_address
 	movs	r2, #0	@ tmp136,
 	str	r2, [r3]	@ tmp136, *alias_address_17
-@ 2_bit-band-alias.c:26:     printf("\n %d \n", *bit_band_memory_address);
+@ bit-banding.c:26:     printf("\n %d \n", *bit_band_memory_address);
 	.loc 1 26 5
 	ldr	r3, [r7, #12]	@ tmp137, bit_band_memory_address
 	ldr	r3, [r3]	@ _9, *bit_band_memory_address_12
 	mov	r1, r3	@, _9
 	ldr	r0, .L2+4	@,
 	bl	printf		@
-@ 2_bit-band-alias.c:27: }
+@ bit-banding.c:27: }
 	.loc 1 27 1
 	nop	
 	adds	r7, r7, #24	@,,
@@ -415,19 +415,14 @@ main:
 	.ascii	"unsigned int\000"
 .LASF20:
 	.ascii	"main\000"
-.LASF18:
-	.ascii	"C:\\\\Users\\\\Choaib ELMADI\\\\Documents\\\\D.I.F."
-	.ascii	"Y\\\\2. Electronics\\\\7. STM32\\\\Docs\\\\I Introd"
-	.ascii	"uction\\\\Chapter 1 - Introduction to STM32 MCU Por"
-	.ascii	"tfolio\\\\Examples\000"
 .LASF5:
 	.ascii	"long unsigned int\000"
 .LASF7:
 	.ascii	"long long unsigned int\000"
+.LASF17:
+	.ascii	"bit-banding.c\000"
 .LASF14:
 	.ascii	"bit_order\000"
-.LASF17:
-	.ascii	"2_bit-band-alias.c\000"
 .LASF11:
 	.ascii	"alias_base_address\000"
 .LASF1:
@@ -455,4 +450,8 @@ main:
 	.ascii	"loat-abi=soft -march=armv7e-m -g -O0\000"
 .LASF0:
 	.ascii	"signed char\000"
+.LASF18:
+	.ascii	"C:\\\\Users\\\\Choaib ELMADI\\\\Documents\\\\D.I.F."
+	.ascii	"Y\\\\2. Electronics\\\\7. STM32 Repo\\\\Examples\\\\"
+	.ascii	"2- Bit Banding\000"
 	.ident	"GCC: (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) 13.3.1 20240614"
