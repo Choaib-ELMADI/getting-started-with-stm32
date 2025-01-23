@@ -1,18 +1,3 @@
-0. Introduction:
-    * The term ARM stands for "Advanced RISC Machine", and it refers to both:
-        . A multitude of families of RISC (Reduced Instruction Set Computing) architectures.
-        . Several families of complete cores, which are the building blocks of CPUs.
-        => The architecture used to design a processor is based on the cores in that processor.
-
-    * An ARM architecture is a set of specifications that includes:
-        . The instruction set
-        . Execution model
-        . Memory organization and layout
-        . Instruction cycles
-        . and more...
-
-    * Cortex-M is a family of physical cores designed to be integrated with vendor-specific silicon devices.
-
 1. Cortex and Cortex-M Based Processors:
     * ARM Cortex is a wide set of 32 / 64-bit architectures and cores that are popular in the embedded world.
     * There are 3 main subfamilies of Cortex microcontrollers:
@@ -31,3 +16,9 @@
         . Bit-band alias is a region in memory that stores the addresses of each bit in the bit-band region.
         => alias_address = (alias_base) + (32 * (bit_band_memory_address - bit_band_base)) + (bit * 4)
         => Example: alias_address_for_bit_0 = (0x22000000) + (32 * (bit_band_address_for_bit_0 - bit_band_base)) + (0 * 4) = 0x22000000
+
+        . The "System memory" region is reserved to bootloaders, 0x1FFFX000 ---> ...
+        . Each STM32 family provides a bootloader pre-programmed into the chip during production.
+        . Bootloaders are used to load code from several peripherals into the RAM.
+
+        . The "Option bytes" region contains a series of bit flags that are used to configure several aspects of the MCU.

@@ -1,0 +1,14 @@
+1. Introduction:
+    * The term ARM stands for "Advanced RISC Machine", and it refers to both:
+        . A multitude of families of RISC architectures (Reduced Instruction Set Computing).
+        . Several families of complete cores, which are the building blocks of CPUs.
+        => The architecture used to design a processor is based on the cores in that processor.
+
+    * An ARM architecture is a set of specifications that includes:
+        . Instruction set
+        . Execution model
+        . Memory organization and layout
+        . Instruction cycles
+        . and more...
+
+    * Cortex-M is a family of physical cores designed to be integrated with vendor-specific silicon devices.
