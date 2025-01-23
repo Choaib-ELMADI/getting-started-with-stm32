@@ -11,15 +11,27 @@
 
     * Memory Map:
         . ARM defines a standardized memory address space common to all Cortex-M cores.
+        . The address space is organized in several sub-regions with different functionalities:
+            - Code Area       : 0x00000000 -> 0x1FFFFFFF : 0.5 GB
+            - SRAM            : 0x20000000 -> 0x3FFFFFFF : 0.5 GB
+            - Peripheral      : 0x40000000 -> 0x5FFFFFFF : 0.5 GB
+            - External RAM    : 0x60000000 -> 0x9FFFFFFF :   1 GB
+            - External Device : 0xA0000000 -> 0xDFFFFFFF :   1 GB
+            - PPB             : 0xE0000000 -> 0xE00FFFFF :   - --
+            - Vendor Specific : 0xE0100000 -> 0xEFFFFFFF :   - --
         => View images: "Images/Figure 1.3 - Cortex-M fixed memory address space.png", "Images/Figure 1.4 - Memory layout of Code Area on STM32 MCUs.png"
 
-        . Bit-banding is a feature that enables every single bit in the bit-band region to be directly accessible (r/w/m without a sequence of instructions).
-        . Bit-band alias is a region in memory that stores the addresses of each bit in the bit-band region.
-        => alias_address = (alias_base) + (32 * (bit_band_memory_address - bit_band_base)) + (bit * 4)
-        => Example: alias_address_for_bit_0 = (0x22000000) + (32 * (bit_band_address_for_bit_0 - bit_band_base)) + (0 * 4) = 0x22000000
-
-        . The "System memory" region is reserved to bootloaders, 0x1FFFX000 ---> ...
+    * Code Area Regions:
+        . The "System memory" region is reserved to bootloaders, 0x1FFFX000 -> ...
         . Each STM32 family provides a bootloader pre-programmed into the chip during production.
         . Bootloaders are used to load code from several peripherals into the RAM.
 
         . The "Option bytes" region contains a series of bit flags that are used to configure several aspects of the MCU.
+
+        . The "Flash" region is the internal MCU flash memory and where the program code resides, 0x08000000 -> ...
+
+    * Bit Banding:
+        . Bit-banding is a feature that enables every single bit in the bit-band region to be directly accessible (r/w/m without a sequence of instructions).
+        . Bit-band alias is a region in memory that stores the addresses of each bit in the bit-band region.
+        => alias_address = (alias_base) + (32 * (bit_band_memory_address - bit_band_base)) + (bit * 4)
+        => Example: alias_address_for_bit_0 = (0x22000000) + (32 * (bit_band_address_for_bit_0 - bit_band_base)) + (0 * 4) = 0x22000000
