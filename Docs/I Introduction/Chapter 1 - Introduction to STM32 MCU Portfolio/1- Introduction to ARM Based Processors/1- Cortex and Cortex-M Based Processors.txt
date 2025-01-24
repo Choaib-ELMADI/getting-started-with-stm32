@@ -35,7 +35,21 @@
         . The "Flash" region is the internal MCU flash memory and where the program code resides, 0x08000000 -> ...
 
     * Bit Banding:
+        . Bit masking is a technique to work with the individual bits in a word.
+        . Bit masking is used to save space in memory or to deal with internal MCU registers and peripherals.
+        . Bit masking requires multiple instructions to complete an operation. This leads to two types of problems:
+            - Waste of CPU cycles
+            - Dealing with concurrent execution, memory content may change before completing the bit mask operation
+
         . Bit-banding is a feature that enables every single bit in the bit-band region to be directly accessible (r/w/m without a sequence of instructions).
         . Bit-band alias is a region in memory that stores the addresses of each bit in the bit-band region.
-        => alias_address = (alias_base) + (32 * (bit_band_memory_address - bit_band_base)) + (bit * 4)
-        => Example: alias_address_for_bit_0 = (0x22000000) + (32 * (bit_band_address_for_bit_0 - bit_band_base)) + (0 * 4) = 0x22000000
+
+        => bit_band_address = alias_region_base + (region_base_offset * 32) + (bit_number * 4):
+            > alias_region_base  --> the base address of the bit-band alias region
+            > region_base_offset --> the offset of the target word address relative to the start of the memory region base
+            > bit_number         --> the specific bit number
+
+        => The multipliers x32 and x4 ensure each bit in the memory region is uniquely mapped to its own 32-bit address in the alias region.
+
+        => Example (in SRAM region):
+            > bit_band_address_for_bit_0 = 0x22000000 + (0 * 32) + (0 * 4) = 0x22000000
