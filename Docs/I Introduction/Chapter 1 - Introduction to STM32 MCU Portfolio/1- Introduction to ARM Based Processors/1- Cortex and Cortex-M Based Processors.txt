@@ -69,4 +69,14 @@
         . Thumb-2 instruction set is a mix of 16 and 32-bit instruction sets in one operation state.
 
     * Aligned and Unaligned Memory Access:
-        . 
+        . Cortex-M3/4/7 cores support unaligned memory access, unlike early ARM architectures.
+        . Traditional ARM CPUs required aligned access, meaning:
+            - Word (32-bit) variables had to be stored at addresses multiple of 4 (0x20000000, 0x20000004, ...)
+            - Half-word (16-bit) variables had to be stored at addresses multiple of 2
+            - Accessing misaligned addresses caused a "UsageFault" exception
+        . Cortex-M3/4/7 MCUs allow unaligned access, reducing RAM fragmentation.
+        . Unaligned access is limited to these ARM instructions:
+            - LDR, LDRT, LDRH, LDRHT, LDRSH, LDRSHT, STR, STRT, STRH, STRHT
+
+        => View image:
+            + "Images/Figure 1.7 - Difference between aligned and unaligned memory access.png"
