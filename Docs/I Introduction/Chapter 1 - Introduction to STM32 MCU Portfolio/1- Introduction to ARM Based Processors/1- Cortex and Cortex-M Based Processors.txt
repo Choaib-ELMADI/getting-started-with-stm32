@@ -53,3 +53,20 @@
 
         => Example (in SRAM region):
             > bit_band_address_for_bit_0 = 0x22000000 + (0 * 32) + (0 * 4) = 0x22000000
+
+    * Thumb and Thumb-2 Instruction Set:
+        . Historically, ARM processors provide 32-bit instructions set.
+        . This allows for:
+            - Rich set of instructions
+            - Guarantees the best performance (arithmetic operations, memory transfers)
+        . But it has some downsides:
+            - A cost in terms of memory footprint of the firmware (higher amount of bytes)
+            - Power consumption
+            - Overall costs of the MCU
+
+        . Thumb is a set of instructions of 16 bits long, introduced to address the 32-bit instructions set issues.
+        . Each 16-bit Thumb instruction is automatically translated to the corresponding 32-bit ARM instruction.
+        . Thumb-2 instruction set is a mix of 16 and 32-bit instruction sets in one operation state.
+
+    * Aligned and Unaligned Memory Access:
+        . 
