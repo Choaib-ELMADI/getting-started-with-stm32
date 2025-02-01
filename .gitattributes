@@ -1,2 +1,5 @@
 Docs/* linguist-documentation=false
 Docs/**/* linguist-documentation=false
+
+Examples/* linguist-documentation=false
+Examples/**/* linguist-documentation=false
