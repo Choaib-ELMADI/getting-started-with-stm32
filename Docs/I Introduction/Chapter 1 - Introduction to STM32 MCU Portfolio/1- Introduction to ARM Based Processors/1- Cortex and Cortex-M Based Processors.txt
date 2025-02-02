@@ -88,3 +88,17 @@
         => View images:
             + "Images/Figure 1.8 - Three stage instruction pipeline.png"
             + "Images/Figure 1.9 - Branching in program execution related to pipelining.png"
+
+    * Interrupts and Exceptions Handling:
+        . Interrupts and exceptions are asynchronous events that alter the program flow.
+        . When an exception or an interrupt occurs:
+            > The CPU suspends the execution of the current task
+            > Saves current task's context (its stack pointer)
+            > Starts the execution of the interrupt\exception routine:
+                - Exception Handler for exceptions
+                - Interrupt Service Routine (ISR) for interrupts
+            > The CPU, then, resumes the previous execution flow
+        . In the ARM architecture, interrupts are one type of exceptions.
+        . Interrupts are usually generated from on-chip peripherals or external inputs, and in some cases by software.
+        . Exceptions are related to software execution.
+        . Nested Vectored Interrupt Controller (NVIC) is a unit for processing exceptions and interrupts that offers a set of features.
