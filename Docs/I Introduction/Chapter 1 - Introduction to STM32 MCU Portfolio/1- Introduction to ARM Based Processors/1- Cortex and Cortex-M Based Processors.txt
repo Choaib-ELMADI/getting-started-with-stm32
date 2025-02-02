@@ -80,3 +80,11 @@
 
         => View image:
             + "Images/Figure 1.7 - Difference between aligned and unaligned memory access.png"
+
+    * Pipelining:
+        . Modern CPUs introduce a way to parallelize the instructions execution operations.
+        . Each instruction is split into a sequence of stages so that different steps can be executed in parallel.
+
+        => View images:
+            + "Images/Figure 1.8 - Three stage instruction pipeline.png"
+            + "Images/Figure 1.9 - Branching in program execution related to pipelining.png"
