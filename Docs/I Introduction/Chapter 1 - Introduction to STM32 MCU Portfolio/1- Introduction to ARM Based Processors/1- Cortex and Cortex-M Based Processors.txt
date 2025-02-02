@@ -102,3 +102,10 @@
         . Interrupts are usually generated from on-chip peripherals or external inputs, and in some cases by software.
         . Exceptions are related to software execution.
         . Nested Vectored Interrupt Controller (NVIC) is a unit for processing exceptions and interrupts that offers a set of features.
+
+    * System Timer:
+        . Cortex-M based processors can optionally provide a system timer, AKA SysTick (all STM32 devices provide one).
+        . SysTick is a 24-bit down-counting timer used to:
+            - Provide a system tick for Real Time Operating Systems (RTOS)
+            - Generate periodic interrupts to scheduled tasks
+            - Generate precise delays to STM32 HAL
