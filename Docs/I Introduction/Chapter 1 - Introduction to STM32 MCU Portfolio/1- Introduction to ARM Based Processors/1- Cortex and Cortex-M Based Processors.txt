@@ -109,3 +109,17 @@
             - Provide a system tick for Real Time Operating Systems (RTOS)
             - Generate periodic interrupts to scheduled tasks
             - Generate precise delays to STM32 HAL
+
+    * Power Modes:
+        . Reducing power consumption is the main goal when developing a new battery-powered device.
+        . Cortex-M processors provide several levels of power management, mainly divided into two groups:
+            > Intrinsic features, refers to those features related to power consumption defined during the design of the MCU and its cores:
+                - Pipeline stages number
+                - Instruction set and code density
+                - ...
+            > User-defined power modes, refers to configurable modes via System Control Register (SCR):
+                - Run mode: CPU runs at its full capabilities.
+                - Sleep mode: Most functionalities are suspended, CPU frequency is lowered and activities are reduced to necessary ones only.
+                - Deep sleep mode: All clock signals are stopped, CPU needs an external event to wake up.
+
+        => The real MCU implementation can introduce different power levels.
