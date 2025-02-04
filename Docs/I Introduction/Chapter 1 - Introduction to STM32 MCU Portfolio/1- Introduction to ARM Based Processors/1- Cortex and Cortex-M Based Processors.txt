@@ -123,3 +123,9 @@
                 - Deep sleep mode: All clock signals are stopped, CPU needs an external event to wake up.
 
         => The real MCU implementation can introduce different power levels.
+
+    * Cortex Microcontroller Software Interface Standard:
+        . CMSIS is a set of software tools and APIs that make it easier to develop applications for ARM Cortex-M microcontrollers.
+        . It provides a common way to interact with the processor, making code more reusable across different MCUs from various manufacturers.
+        . CMSIS consists of:
+            - CMSIS-CORE, CMSIS-Driver, CMSIS-DSP, CMSIS-RTOS API, CMSIS-Pack, CMSIS-SVD, CMSIS-DAP, CMSIS-NN
