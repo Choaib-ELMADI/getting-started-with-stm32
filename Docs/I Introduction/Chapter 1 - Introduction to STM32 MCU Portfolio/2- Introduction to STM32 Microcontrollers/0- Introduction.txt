@@ -1,0 +1,3 @@
+1. STM32 Microcontrollers:
+    . STM32 is a wide range of microcontrollers divided in 17 sub-families, each one with its features.
+    . All STM32 microcontrollers have a Cortex-M core, plus some distinctive ST features.
