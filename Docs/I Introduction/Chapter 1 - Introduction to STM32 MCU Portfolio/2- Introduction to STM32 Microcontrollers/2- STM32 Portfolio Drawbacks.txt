@@ -1,0 +1,7 @@
+1. STM32 Portfolio Drawbacks:
+    . Steep Learning Curve: Beginners may struggle with STM32 due to complex documentation and development processes.
+    . Dispersed Documentation: ST provides extensive datasheets, but documentation is often fragmented, especially for the HAL (Hardware Abstraction Layer).
+    . Buggy HAL Library: ST's HAL has improved but still contains bugs, especially in less common modules.
+        > Fixes are slow, and sometimes updates introduce new issues.
+    . Performance Issues: The HAL is not highly optimized, relying on many if-else statements.
+        > For time-sensitive applications, ST provides the CubeHAL-LL, a lower-level, more efficient library.
