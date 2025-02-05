@@ -1,0 +1,29 @@
+1. STM32 Discovery Boards:
+    . STM32 Discovery is the most widespread development board for STM32 microcontrollers.
+    . ST has created over 48 different Discovery boards for testing STM32 MCUs.
+
+2. Introduction to Nucleo Boards:
+    . In 2015, ST introduced a new range of development boards called Nucleo.
+    . Three main Nucleo groups (LQFP -> Low-Profile Quad Flat Package):
+        - Nucleo-32   (LQFP-32 package)
+        - Nucleo-64   (LQFP-64 package)
+        - Nucleo-144 (LQFP-144 package)
+    . Nucleo-64 was the first introduced and has 32 different boards with different STM32 MCUs.
+    . Nucleo-144 (introduced in 2016) was the first low-cost kit with the STM32F746, Ethernet PHY, and LAN port.
+
+3. Features of Nucleo Boards:
+    . Two main sections:
+        > ST-LINK 2.1 Debugger (mini-USB interface, firmware uploading, step-by-step debugging, Virtual COM Port for communication).
+        > Main Board (MCU, RESET button, user button, LED, pad for an external high-speed crystal).
+    . Detachable ST-LINK interface: Can be used as a standalone ST-LINK programmer.
+    . SWD interface for programming another board without detaching ST-LINK:
+        > SWD (Serial Wire Debug): A two-wire debugging protocol used in ARM-based microcontrollers, including STM32.
+        > It allows programming and debugging with fewer pins compared to traditional JTAG (Joint Test Action Group) interfaces.
+    . Pin Headers:
+        - Supports Arduino shields for expansion.
+        - Morpho connectors (Two 2x19-pin male headers) for accessing most MCU pins.
+
+4. Advantages of Nucleo Over Discovery:
+    . Lower cost compared to Arduino DUE.
+    . Pin-to-pin compatibility: Firmware developed on one Nucleo board can be adapted to a more powerful one.
+    . Expansion shields available: ST releases expansion boards compatible with both Arduino and Morpho headers.
