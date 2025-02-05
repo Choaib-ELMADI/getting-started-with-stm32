@@ -1,0 +1,18 @@
+1. STM32 Product Categories:
+    . High-Performance MCUs:
+        - Designed for CPU-intensive and multimedia applications.
+        - Based on Cortex-M3/M4F/M7, with clock speeds from 120MHz (F2) to 550MHz (H7).
+        - Some models feature ART™ Accelerator for faster flash execution.
+    . Mainstream MCUs:
+        - Optimized for cost-sensitive applications.
+        - Based on Cortex-M0/M0+/M3/M4, with clock speeds from 48MHz (F0) to 170MHz+ (G4).
+    . Ultra Low-Power MCUs:
+        - Used in battery-powered devices to maximize energy efficiency.
+        - Include Cortex-M0+/M4F/M33 cores.
+        - Feature Dynamic Voltage Scaling (DVS) to adjust CPU voltage based on frequency.
+    . Wireless MCUs:
+        - Designed for wireless connectivity (Sub-GHz and 2.4GHz).
+        - Feature dual-core architecture:
+            > Cortex-M0+ (Network Processor) for radio management.
+            > Cortex-M4 (Application Processor) for embedded applications.
+        - Support various protocols, from mesh networks to wide-area IoT systems.
