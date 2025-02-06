@@ -1,0 +1,14 @@
+1. Flashing the Nucleo with STM32CubeProgrammer:
+    1. Open STM32CubeProgrammer and connect the Nucleo board via USB.
+    2. Click Refresh — the board's serial number should appear.
+    3. If "Old ST-LINK Firmware" appears, update the firmware (see previous section).
+    4. Click Connect to view the flash memory content.
+    5. Click Erase & Programming (2nd green icon on the left).
+    6. Click Browse, navigate to:
+        - Windows: project_name\Debug
+        - Linux/macOS: project_name/Debug
+    7. Select project_name.elf file.
+    8. Enable Verify programming and Run after programming options.
+    9. Click Start Programming to flash the firmware.
+
+    => Congratulations! Your Nucleo is now running your first STM32 firmware.
