@@ -1,0 +1,22 @@
+1. Setting Up the Project:
+    . Open STM32CubeIDE and navigate to: File -> New -> STM32 Project.
+    . The Target Selection wizard will appear (may take time to load as it fetches the latest MCU and board specifications from ST's servers).
+    . The wizard is part of STM32CubeMX, a tool that simplifies hardware configuration and peripheral initialization.
+
+2. Selecting the Development Board:
+    . Click on the Board Selector tab.
+    . Expand the Type menu and select the board family.
+    . Find and choose the specific board you are using.
+
+3. Naming and Configuring the Project:
+    . Click Next, then enter a Project Name.
+    . Leave all other settings as default and click Finish to generate the project.
+    . The IDE will ask if you want to initialize all peripherals with default mode. Click Yes to let the IDE handle initial configurations.
+
+4. Downloading the Required Firmware Package:
+    . If this is your first time creating a project for the selected STM32 family, STM32CubeIDE will download the corresponding Cube Firmware Package.
+    . The package includes:
+        - HAL (Hardware Abstraction Layer) - Libraries for peripheral and core functionality.
+        - Middleware Libraries             - Additional software for advanced peripherals (e.g., USB stack).
+        - Example Projects                 - Pre-configured example applications for various STM32 boards.
+    . The download size varies depending on the STM32 family; more powerful MCUs require larger firmware packages.
