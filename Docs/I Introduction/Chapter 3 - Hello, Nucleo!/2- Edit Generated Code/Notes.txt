@@ -1,0 +1,28 @@
+1. STM32CubeIDE Project Structure:
+    . Includes Folder:
+        - Contains GCC Include Folders for header files (.h).
+        - Include paths are managed automatically by Eclipse.
+    . Core Folder:
+        - Contains main application source files.
+        - Key file: Src/main.c (includes main() function).
+    . Drivers Folder:
+        - Stores libraries:
+            > CubeHAL (Hardware Abstraction Layer) for peripherals.
+            > CMSIS (Cortex Microcontroller Software Interface Standard) for low-level access.
+    . project_name.ioc File:
+        - STM32CubeMX project file storing hardware configuration.
+
+2. Understanding main.c:
+    . Key initialization functions:
+        > HAL_Init();               // Initializes CubeHAL
+        > SystemClock_Config();     // Configures system clock
+        > MX_GPIO_Init();           // Initializes GPIOs
+        > MX_USART2_UART_Init();    // Initializes UART2 for ST-LINK
+
+3. USER CODE Sections:
+    . Preserve custom code inside:
+        /* USER CODE BEGIN X */
+        ...
+        ...
+        /* USER CODE END X */
+    . Prevents code loss when regenerating in STM32CubeMX.
