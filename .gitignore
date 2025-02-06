@@ -2,7 +2,6 @@
 
 *.exe
 *.i
-*.o
 
 .plugins
 .lock

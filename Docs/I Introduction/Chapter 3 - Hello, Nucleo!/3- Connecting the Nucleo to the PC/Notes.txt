@@ -1,0 +1,26 @@
+1. Introduction:
+    . Connect the Nucleo board to the computer via micro-USB (VCP port).
+    . Ensure the USB port provides at least 500mAh or use an external powered hub.
+    . LD1 (ST-LINK LED):
+        - Green when connected.
+        - Blinks green/red during debugging or firmware upload.
+    . LD3 (POWER LED):
+        - Red when USB enumeration is complete (MCU is powered).
+    . LD2 (USER LED):
+        - Green LED blinks with preloaded firmware.
+        - Press USER BTN to change blinking frequency.
+    . Ensure ST-LINK debugger is updated to the latest ST-LINK 2.1 firmware before flashing custom firmware.
+
+2. ST-LINK Firmware Upgrade:
+    . ST-LINK firmware must be updated to at least V2J37.x for compatibility with STM32CubeIDE.
+    . Update steps using STM32CubeIDE:
+        - Connect the Nucleo board via USB.
+        - Go to: Help -> ST-LINK Upgrade.
+        - Click Refresh device list (board should appear as ST-LINK/V2-1).
+        - Click Open in update mode and check if an update is needed.
+        - If required, click Upgrade and wait for completion.
+    . Error Fix: ST-LINK Upgrade Failure
+        - If error 0x1 (Error connecting to device ST-LINK/V2-1) occurs:
+            > Check USB connection, refresh device list.
+            > Use a self-powered USB HUB or try a different USB port.
+            > Avoid Apple keyboard USB ports (common issue on iMacs).
