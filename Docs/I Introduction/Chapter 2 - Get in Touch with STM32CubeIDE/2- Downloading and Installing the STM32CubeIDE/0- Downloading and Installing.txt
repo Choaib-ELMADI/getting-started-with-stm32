@@ -1,0 +1,10 @@
+1. Downloading and Installing:
+    => View image: "Images/Figure 2.1 - The STM32CubeIDE download page on the official STM website.png"
+    or
+    => Visit link: https://www.st.com/en/development-tools/stm32cubeide.html
+
+    . STM32CubeIDE-Win: this executable package contains the installer for Windows.
+    . STM32CubeIDE-Mac: this ZIP file contains the DMG file (Apple Disk Image) with the installer for Mac OSX.
+    . STM32CubeIDE-DEB: this package contains a Linux Debian installation package (.deb package). This is for Linux Debian distributions and derived.
+    . STM32CubeIDE-RPM: this package contains a Linux RedHat installation package (.rpm package). This is for Linux RedHat distributions and derived.
+    . STM32CubeIDE-Lnx: this is a generic Linux tarball containing the STM32CubeIDE and all necessary tools and libraries. This package is for advanced Linux users.
