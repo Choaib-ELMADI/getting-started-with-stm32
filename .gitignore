@@ -3,3 +3,12 @@
 *.exe
 *.i
 *.o
+
+.plugins
+.lock
+.log
+.log4j2.xml
+.settings
+.cproject
+.mxproject
+.project
