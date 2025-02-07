@@ -39,13 +39,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_line   00008c41  00000000  00000000  0002ddc6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000c4911  00000000  00000000  00036a07  2**0
+ 18 .debug_str    000c4917  00000000  00000000  00036a07  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000fb318  2**0
+ 19 .comment      00000043  00000000  00000000  000fb31e  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00001a24  00000000  00000000  000fb35c  2**2
+ 20 .debug_frame  00001a24  00000000  00000000  000fb364  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000009a  00000000  00000000  000fcd80  2**0
+ 21 .debug_line_str 0000009a  00000000  00000000  000fcd88  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -345,12 +345,12 @@ Disassembly of section .text:
  80004f2:	bf00      	nop
 
 080004f4 <main>:
-
 /**
   * @brief  The application entry point.
   * @retval int
   */
-int main(void) {
+int main(void)
+{
  80004f4:	b580      	push	{r7, lr}
  80004f6:	af00      	add	r7, sp, #0
   /* USER CODE END 1 */
@@ -381,14 +381,14 @@ int main(void) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	HAL_GPIO_TogglePin(My_LD2_GPIO_Port, My_LD2_Pin);
  8000508:	2120      	movs	r1, #32
  800050a:	4804      	ldr	r0, [pc, #16]	@ (800051c <main+0x28>)
  800050c:	f000 fd19 	bl	8000f42 <HAL_GPIO_TogglePin>
 	HAL_Delay(500);
  8000510:	f44f 70fa 	mov.w	r0, #500	@ 0x1f4
  8000514:	f000 fa5e 	bl	80009d4 <HAL_Delay>
-	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	HAL_GPIO_TogglePin(My_LD2_GPIO_Port, My_LD2_Pin);
  8000518:	bf00      	nop
  800051a:	e7f5      	b.n	8000508 <main+0x14>
  800051c:	40020000 	.word	0x40020000
@@ -676,7 +676,7 @@ static void MX_GPIO_Init(void)
  80006d4:	687b      	ldr	r3, [r7, #4]
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(My_LD2_GPIO_Port, My_LD2_Pin, GPIO_PIN_RESET);
  80006d6:	2200      	movs	r2, #0
  80006d8:	2120      	movs	r1, #32
  80006da:	4812      	ldr	r0, [pc, #72]	@ (8000724 <MX_GPIO_Init+0xd4>)
@@ -698,8 +698,8 @@ static void MX_GPIO_Init(void)
  80006f6:	480c      	ldr	r0, [pc, #48]	@ (8000728 <MX_GPIO_Init+0xd8>)
  80006f8:	f000 fa76 	bl	8000be8 <HAL_GPIO_Init>
 
-  /*Configure GPIO pin : LD2_Pin */
-  GPIO_InitStruct.Pin = LD2_Pin;
+  /*Configure GPIO pin : My_LD2_Pin */
+  GPIO_InitStruct.Pin = My_LD2_Pin;
  80006fc:	2320      	movs	r3, #32
  80006fe:	617b      	str	r3, [r7, #20]
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -711,7 +711,7 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
  8000708:	2300      	movs	r3, #0
  800070a:	623b      	str	r3, [r7, #32]
-  HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(My_LD2_GPIO_Port, &GPIO_InitStruct);
  800070c:	f107 0314 	add.w	r3, r7, #20
  8000710:	4619      	mov	r1, r3
  8000712:	4804      	ldr	r0, [pc, #16]	@ (8000724 <MX_GPIO_Init+0xd4>)

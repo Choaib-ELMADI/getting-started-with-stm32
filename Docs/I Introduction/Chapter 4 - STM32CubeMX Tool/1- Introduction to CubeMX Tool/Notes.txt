@@ -1,0 +1,47 @@
+1. Introduction to CubeMX Tool:
+    . CubeMX is an MCU-centric tool used to configure microcontrollers and generate initialization code for ST HAL.
+    . Hardware-based configuration:
+        - Select the STM32 MCU family.
+        - Choose the package type (LQFP48, BGA144, ...).
+        - Configure hardware peripherals (USART, SPI, ...) and map them to pins.
+        - Set general MCU configurations (clock, power management, NVIC, ...).
+    . Software-based configuration:
+        - Manage the ST HAL for the selected MCU family.
+        - Configure middleware libraries (FatFs, LwIP, FreeRTOS, ...).
+        - Select the development environment (IAR EWARM, Keil MDK-ARM, STM32CubeIDE).
+    . Project generation process:
+        > Phase 1: Select the STM32 MCU or development board via the Target Selection wizard.
+        > Phase 2: Configure the MCU and middleware libraries based on project needs.
+
+2. Target Selection Wizard:
+    . Target Selection wizard has four main selection tabs:
+        > MCU\MPU Selector : Choose an STM32 microcontroller using filters for core type, series, package, peripherals, memory, and price.
+        > Board Selector   : Choose an official ST development board based on type (Nucleo, Discovery, ...), MCU series, and peripherals.
+        > Example Selector : Filter through 5,000+ examples based on name, keyword, board, MCU, project type, drivers, middleware, and BSP libraries.
+        > Cross Selector   : Helps find STM32 alternatives to non-ST MCUs or unavailable STM32 chips, with a match percentage indicator.
+
+3. MCU and Middleware Configuration:
+    . Project File (.ioc) and Code Generation:
+        > STM32CubeIDE generates a .ioc file that stores all configurations made in CubeMX.
+        > CubeMX uses this file to generate the project structure, source files, and required libraries.
+    . Pinout & Configuration View:
+        > MCU representation (ST Pinout View) shows selected peripherals and GPIOs.
+        > Pin Colors:
+            - Green  : Enabled pin, CubeMX generates code for it.
+            - Orange : Peripheral not enabled, so no configuration code is generated.
+            - Yellow : Power source pins (cannot be changed).
+            - Khaki  : BOOT and RESET pins (cannot be changed).
+        > Some STM32 MCUs allow multiple pin options for a peripheral.
+        > System View (Alternative to Pinout View) displays all configurable components: GPIOs, peripherals, DMA, NVIC, Middleware, and software components.
+        > Peripherals and Middleware Configuration (Component List View) shows all available peripherals and Middleware components.
+        > Icons & Color Indicators:
+            - Available & Disabled         : Peripheral can be enabled, all modes available.
+            - Conflict                     : Peripheral conflicts with another (tooltip shows the conflicting peripheral).
+            - Configured                   : Green check mark (properly set), fuchsia cross (misconfigured).
+            - Not Configured & Unavailable : No modes available due to conflicts.
+    . Clock Configuration View:
+        > 
+    . Project Manager:
+        > 
+    . Tools:
+        > 
