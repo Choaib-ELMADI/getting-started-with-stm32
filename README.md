@@ -17,6 +17,16 @@ This repository documents my journey with STM32 microcontrollers while studying 
 - **Projects**: Practical implementations and experiments.
 - **Mastering STM32 - Second Edition.pdf**: The original PDF file of the book.
 
+## STM32 Development Tools
+
+Here are some essential tools for STM32 development:
+
+- **[STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)**: An all-in-one IDE that integrates a compiler, debugger, and project manager for STM32 development.
+- **[STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html)**: A graphical tool to configure STM32 microcontrollers and generate initialization code.
+- **[STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html)**: A tool for flashing firmware onto STM32 microcontrollers via various interfaces.
+- **[STM32CubeCLT](https://www.st.com/en/development-tools/stm32cubeclt.html)**: A command-line tool for building, debugging, and flashing STM32 projects.
+- **[STMCUFinder](https://www.st.com/en/development-tools/st-mcu-finder-pc.html)**: A search tool to find STM32 and STM8 microcontrollers and their technical documentation.
+
 ## STM32 Animations
 
 I've also created some video animations using `Manim` to visualize some STM32 concepts. These animations aim to simplify complex topics and enhance learning. You can check them out in [manim-animation](https://github.com/Choaib-ELMADI/manim-animation).
