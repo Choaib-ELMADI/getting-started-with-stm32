@@ -40,8 +40,21 @@
             - Configured                   : Green check mark (properly set), fuchsia cross (misconfigured).
             - Not Configured & Unavailable : No modes available due to conflicts.
     . Clock Configuration View:
-        > 
-    . Project Manager:
-        > 
-    . Tools:
-        > 
+        > The Clock Configuration view manages all clock-related settings for the core and peripherals.
+        > It provides a graphical representation of clock sources, dividers, and PLL configurations.
+        > At first, it may seem complex, but with practice, it simplifies STM32 clock management.
+        > If your design requires an external High-Speed (HSE) or Low-Speed (LSE) clock:
+            - Go to: Pinout View -> System Core -> RCC section and enable HSE/LSE.
+            - After enabling, you can configure clock sources in the Clock Configuration view.
+    . Project Manager View:
+        > The Project Manager handles project-wide settings like workspace, toolchain, code generation, and HAL libraries. It has three sections:
+            - Project           : Set project name, location, toolchain, and CubeHAL version.
+            - Code Generator    : Configure how HAL source files are included and manage template file structure when updating settings.
+            - Advanced Settings : Choose between CubeHAL (higher-level) or Cube-LL (optimized, lower-level) and select which peripherals/middleware generate code.
+    . Tools View:
+        > Contains additional configuration panes, some specific to advanced MCUs (e.g., STM32MP1).
+        > Power Consumption Calculator (PCC) is available for all STM32 microcontrollers.
+        > PCC estimates:
+            - Average power consumption
+            - Battery life
+            - Average DMIPS (Dhrystone MIPS - performance metric)
