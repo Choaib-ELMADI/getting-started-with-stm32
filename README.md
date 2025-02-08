@@ -10,7 +10,7 @@ This repository documents my journey with STM32 microcontrollers while studying 
 
 </div>
 
-## Development Board:
+## Development Board
 
 I'm using the `Nucleo-F446RE` board for learning and experimenting with STM32 microcontrollers. This board is based on the `STM32F446RET6` MCU and provides a great balance between performance and flexibility for embedded systems development.
 
