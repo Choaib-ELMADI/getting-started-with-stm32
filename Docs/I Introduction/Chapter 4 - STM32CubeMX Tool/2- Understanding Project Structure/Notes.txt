@@ -1,0 +1,36 @@
+1. Understanding Project Structure:
+    . CubeMX generates a C project skeleton after MCU configuration.
+    . Code generation can be triggered by:
+        - Saving the CubeMX project (.ioc file).
+        - Using: Project -> Generate Code or clicking the Eclipse toolbar icon.
+    . CubeMX organizes files into a structured format.
+
+2. Binaries Folder:
+    . Stores the final compiled binary file.
+    . Uses the Executable and Linkable Format (ELF).
+    . Same binary is also stored in the Debug folder.
+
+3. Includes Folder:
+    . Represents all include paths for the compiler (GCC).
+    . Allows adding references to include files without modifying compiler settings.
+    . Managed by Eclipse CDT.
+
+4. Core Folder:
+    . Contains application-specific files based on CubeMX configuration.
+    . Modifying the folder structure may break CubeMX code updates.
+    . Important Files in Core Folder:
+        > Core/Inc/main.h:
+            -> Companion header file for main.c, contains macro definitions for peripherals.
+        > Core/Inc/stm32XXxx_hal_conf.h:
+            -> Configures HAL functionalities through macro definitions.
+        > Core/Inc/stm32XXxx_it.h and Core/Src/stm32XXxx_it.c:
+            -> Stores Interrupt Service Routines (ISRs).
+            -> Example: SysTick_Handler() handles SysTick timer interrupts.
+        > Core/Startup/startup_stmXXxx.s:
+            -> Defines the vector table for Cortex-M processors.
+        > Core/Src/stm32XXxx_hal_msp.c (MCU Support Package - MSP):
+            -> MSP defines initialization functions for configuring peripherals.
+            -> Example: HAL_UART_MspInit():
+                - Configures USART2 with GPIOA (PA2, PA3).
+                - Enables peripheral clocks and sets GPIO configurations.
+                - Defines alternate function mode, pull-up settings, and speed.
