@@ -13,3 +13,19 @@
     . Resume      : Continue execution until the next breakpoint.
     . Terminate   : End the debug session.
     . Watchpoints : Conditional breakpoints that halt execution only when a specific variable meets a condition.
+
+2. Debug Configurations:
+    . Debug Configurations: Access via the debug icon -> Debug Configurations.
+    . Main Tab: Specifies project name and binary file for debugging.
+    . Debugger Tab:
+        - GDB Connection Settings: Leave default settings.
+        - Debug Probe: Uses ST-LINK (default).
+        - Interface: Select SWD (default).
+    . Reset Behavior (Fixes flashing/debugging issues):
+        - Connect under reset (default).
+        - Software system reset (via RCC register).
+        - Hardware reset (reset pulse).
+        - Core reset (only resets core, not peripherals).
+    . Startup Tab:
+        - Set breakpoint at main() (default).
+        - Exception handling (divide by zero, unaligned access, halt on exception).
