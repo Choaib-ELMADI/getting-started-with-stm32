@@ -1,0 +1,7 @@
+1. Management of STM32Cube Packages:
+    . STM32CubeIDE allows managing CubeHAL packages and Cube Extension Packs.
+    . Access via: Help -> Configuration Tools -> Manage Embedded Software Packages.
+    . Packages can be installed manually using a local ZIP file or a remote URL.
+    . All Cube packages are stored in:
+        - Windows: C:\Users\{USERNAME}\STM32Cube\Repository
+        - MacOS/Linux: ~/STM32Cube/Repository
