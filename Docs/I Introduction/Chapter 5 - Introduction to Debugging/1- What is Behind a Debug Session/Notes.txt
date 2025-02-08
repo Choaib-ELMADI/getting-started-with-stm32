@@ -1,0 +1,24 @@
+1. Debugging Setup Overview:
+    . Before starting a debug session, it's important to understand the software and hardware tools involved.
+
+2. Role of GDB (GNU Debugger):
+    . A command-line tool used for debugging in GCC-based environments.
+    . Designed to be independent of architecture, programming language, and OS.
+    . Divided into a frontend (core logic) and a backend (target-specific implementation).
+
+3. Client-Server Model in GDB:
+    . GDB communicates with a backend server via a network connection, which can be local or remote.
+    . Embedded debugging requires a hardware debug adapter to translate commands into JTAG\SWD signals.
+
+4. ST-LINK GDB Server:
+    . ST provides a dedicated GDB backend for STM32 debugging, called ST-LINK GDB Server.
+    . Communicates with the ST-LINK adapter via USB (using libusb).
+    . Includes configuration files to support various STM32 MCUs.
+
+5. Debug Session Process:
+    1| STM32CubeIDE launches ST-LINK GDB Server, specifying connection details, debug mode (JTAG/SWD), and speed.
+    2| STM32CubeIDE runs the GDB client, which connects to the ST-LINK GDB Server over TCP/IP.
+    3| Firmware is loaded into the target MCU's FLASH memory, and execution begins.
+
+    => View image:
+        + "Images/Figure 5.1 - How OpenOCD interacts with a Nucleo board.png"
