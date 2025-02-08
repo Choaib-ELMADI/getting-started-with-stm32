@@ -11,3 +11,4 @@
 .cproject
 .mxproject
 .project
+*.launch

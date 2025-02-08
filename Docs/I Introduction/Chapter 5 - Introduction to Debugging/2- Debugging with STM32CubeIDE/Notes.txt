@@ -1,0 +1,15 @@
+1. Debugging with STM32CubeIDE:
+    . Debug Perspective in Eclipse provides essential debugging tools.
+    . Start Debugging: Click the Debug icon, then confirm the perspective switch.
+
+    . Debug View            : Shows active debug sessions and the call stack.
+    . Variables View        : Inspect and modify variable values.
+    . Breakpoints View      : Lists and manages breakpoints.
+    . Editor View           : Double-click next to a line to set a breakpoint.
+    . Registers & SFR Views : Display hardware and core registers.
+
+    . Step Into   : Execute the next line and enter functions.
+    . Step Over   : Execute the next line without entering functions.
+    . Resume      : Continue execution until the next breakpoint.
+    . Terminate   : End the debug session.
+    . Watchpoints : Conditional breakpoints that halt execution only when a specific variable meets a condition.
