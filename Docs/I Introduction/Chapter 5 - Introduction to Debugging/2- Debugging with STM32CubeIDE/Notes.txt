@@ -29,3 +29,24 @@
     . Startup Tab:
         - Set breakpoint at main() (default).
         - Exception handling (divide by zero, unaligned access, halt on exception).
+
+3. I/O Retargeting: (Redirecting printf/scanf to USART2)
+    . Why Use I/O Retargeting?
+        - Debugging with breakpoints may cause loss of important events.
+        - Serial output (printf) helps understand firmware behavior.
+        - printf handles string formatting, avoiding manual data type conversion.
+    . How to Implement I/O Retargeting?
+        - Redefine system calls (_write, _read, _isatty, _close, _fstat).
+        - Redirect STDIN, STDOUT, and STDERR to USART2.
+        - Disable I/O buffering for immediate output.
+        - HAL_UART_Transmit() used for output, HAL_UART_Receive() for input.
+        - Requires initializing the retargeting function with UART2 handle in main.c.
+    . Float Support in printf() and scanf():
+        - newlib-nano (default C runtime) does NOT support floating-point in printf/scanf.
+        - Must enable float support manually in project settings.
+        - Steps to enable:
+            > Open Project Properties -> C/C++ Build -> Settings -> MCU Settings.
+            > Check:
+                + Use float with printf from newlib-nano
+                + Use float with scanf from newlib-nano
+        - Enabling this increases firmware size.
