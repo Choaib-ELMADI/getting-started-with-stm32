@@ -32,6 +32,17 @@ Here are some essential tools for STM32 development:
 - **[STM32CubeCLT](https://www.st.com/en/development-tools/stm32cubeclt.html)**: A command-line tool for building, debugging, and flashing STM32 projects.
 - **[STMCUFinder](https://www.st.com/en/development-tools/st-mcu-finder-pc.html)**: A search tool to find STM32 and STM8 microcontrollers and their technical documentation.
 
+## HAL (Hardware Abstraction Layer)
+
+HAL `Hardware Abstraction Layer` is a high-level API provided by `STMicroelectronics` to simplify the development of applications on STM32 microcontrollers. It abstracts the low-level hardware details and provides a standardized way to interact with peripherals.
+
+- **Portability**: Code written using HAL can be easily adapted to different STM32 models with minimal changes.
+- **Ease of Use**: HAL provides user-friendly functions for configuring and controlling peripherals without dealing with complex register settings.
+- **Reliability**: It includes built-in error handling and debugging features.
+- **Compatibility**: Works with STM32CubeIDE, allowing seamless integration with ST's software ecosystem.
+
+HAL is widely used for rapid development, but it has performance trade-offs compared to direct register manipulation or LL (Low Layer) drivers.
+
 ## STM32 Animations
 
 I've also created some video animations using `Manim` to visualize some STM32 concepts. These animations aim to simplify complex topics and enhance learning. You can check them out in [manim-animation](https://github.com/Choaib-ELMADI/manim-animation).
