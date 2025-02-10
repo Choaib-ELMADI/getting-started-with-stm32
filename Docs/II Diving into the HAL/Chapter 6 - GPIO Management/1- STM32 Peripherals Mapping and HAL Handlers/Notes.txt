@@ -1,0 +1,30 @@
+1. STM32 Peripheral Mapping & Buses:
+    . STM32 peripherals connect to the MCU core via multiple buses.
+    . "System Bus" connects the Cortex-M core to the Bus Matrix, managing arbitration between CPU and DMA.
+    . "DMA Bus" links DMA to the Bus Matrix for accessing SRAM, Flash, and peripherals.
+    . Bus Matrix arbitrates access between CPU and DMA using a Round Robin algorithm.
+    . AHB (Advanced High-performance Bus) to APB (Advanced Peripheral Bus) Bridge connects AHB and APB, where most peripherals are located.
+
+2. Peripheral Memory Mapping:
+    . STM32 peripherals are mapped within the 4GB address space (0x40000000 -> 0x5FFFFFFF).
+    . Each STM32 model has a specific mapping structure.
+
+3. Register Access & GPIO Configuration:
+    . Peripherals are controlled by modifying registers within their mapped memory region.
+    . Example: Configuring PA5 as an output pin:
+        - MODER Register: Set bits [11:10] = 01 (General Purpose Output Mode).
+        - ODR Register: Set bit [5] = 1 (Pull PA5 high).
+    . Memory address for ODR Register: GPIOA + 0x14 (0x48000000 + 0x14).
+
+4. Direct Memory Access (DMA) vs. HAL:
+    . Registers can be accessed directly using pointers.
+    . HAL abstracts hardware details using C structures (handlers).
+    . Example of HAL GPIO Initialization:
+        > GPIO_InitStruct.Pin = GPIO_PIN_5;
+        > GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+        > HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    . HAL GPIOA handler (GPIO_TypeDef structure) stores registers in a structured format.
+
+5. HAL's Role in Peripheral Abstraction:
+    . STM32 families (F0, F1, F4, ...) have different peripheral mappings.
+    . HAL provides a standardized way to access peripherals without worrying about specific memory addresses.
