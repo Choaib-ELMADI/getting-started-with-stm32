@@ -1,0 +1,7 @@
+1. De-initializing a GPIO:
+    . To reset a GPIO pin to its default state (Input Floating Mode), use:
+        > void HAL_GPIO_DeInit(GPIO_TypeDef *GPIOx, uint32_t GPIO_Pin);
+
+2. Purpose & Use Cases:
+    . Free up a GPIO if it's no longer needed.
+    . Reduce power consumption when the CPU enters sleep mode.
