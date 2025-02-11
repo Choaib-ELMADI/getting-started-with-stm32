@@ -1,0 +1,12 @@
+1. Driving a GPIO:
+    . CubeHAL provides four functions to read, modify, toggle, and lock GPIO states.
+
+    . Reading GPIO State:
+        > GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+    . Writing to a GPIO:
+        > void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+        > Sets the pin state to GPIO_PIN_RESET (low) or GPIO_PIN_SET (high).
+    . Toggling a GPIO:
+        > void HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+    . Locking a GPIO:
+        > HAL_StatusTypeDef HAL_GPIO_LockPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
