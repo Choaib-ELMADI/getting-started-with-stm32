@@ -1,0 +1,49 @@
+1. GPIOs Configuration:
+    . HAL simplifies GPIO configuration by abstracting direct register handling.
+    . Function used: HAL_GPIO_Init(GPIO_TypeDef *GPIOx, GPIO_InitTypeDef *GPIO_Init)
+    . Configuration struct:
+        > typedef struct {
+            volatile uint32_t MODER;
+            volatile uint32_t OTYPER;
+            volatile uint32_t OSPEEDR;
+            volatile uint32_t PUPDR;
+            volatile uint32_t IDR;
+            volatile uint32_t ODR;
+            volatile uint32_t BSRR;
+            volatile uint32_t LCKR;
+            volatile uint32_t AFR[2];
+            volatile uint32_t BRR;
+        } GPIO_TypeDef;
+
+        > typedef struct {
+            uint32_t Pin;        // Pin number(s) to configure
+            uint32_t Mode;       // Input, Output, Alternate, or Interrupt mode
+            uint32_t Pull;       // Pull-up or Pull-down configuration
+            uint32_t Speed;      // Pin switching speed
+            uint32_t Alternate;  // Peripheral association
+        } GPIO_InitTypeDef;
+
+2. GPIO Mode (Mode field):
+    . Determines GPIO behavior, such as input, output, or alternate function.
+
+    => View image:
+        + "Images/Table 6.2 - Available GPIO_InitTypeDef.Mode for a GPIO.png"
+
+3. Pull-up/Pull-down Configuration (Pull field):
+    . Determines internal resistor behavior.
+
+    => View image:
+        + "Images/Table 6.3 - Available GPIO_InitTypeDef.Pull modes for a GPIO.png"
+
+4. GPIO Alternate Function:
+    . GPIOs can act as peripheral pins (USART, SPI, I2C, ...).
+    . Each pin supports one alternate function at a time.
+    . Example: Configuring PA2 & PA3 for USART2 TX\RX
+        > GPIO_InitTypeDef GPIO_InitStruct = {0};
+        > GPIO_InitStruct.Pin = GPIO_PIN_2 | GPIO_PIN_3;
+        > GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+        > GPIO_InitStruct.Pull = GPIO_NOPULL;
+        > GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
+        > GPIO_InitStruct.Alternate = GPIO_AF1_USART2;
+        > HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    . CubeMX can also be used to set alternate functions visually and generate code automatically.
