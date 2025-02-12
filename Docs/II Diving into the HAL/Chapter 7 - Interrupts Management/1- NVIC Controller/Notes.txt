@@ -1,0 +1,10 @@
+1. NVIC Controller:
+    . The Nested Vectored Interrupt Controller (NVIC) is a hardware unit that manages exceptions in Cortex-M microcontrollers.
+    . NVIC handles two types of peripherals:
+        - Internal peripherals (timers, UARTs, ...)
+        - External peripherals (buttons, Ethernet PHY, ...)
+    . The External Interrupt\Event Controller (EXTI) connects external I\O signals to NVIC.
+    . ARM differentiates between:
+        - System exceptions (originating inside the CPU core)
+        - Interrupt Requests (IRQ) from external peripherals
+    . ISRs (Interrupt Service Routines) are linked to interrupts via a vector table.
