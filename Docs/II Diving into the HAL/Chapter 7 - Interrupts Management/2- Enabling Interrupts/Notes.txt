@@ -1,0 +1,6 @@
+1. Enabling Interrupts in STM32:
+    . Only Reset, NMI, and Hard Fault exceptions are enabled at boot; others must be manually enabled.
+    . Each interrupt is identified by an IRQn_Type enumeration, defined in a device-specific header file.
+    . The NVIC controller manages interrupts, but peripherals must also be configured for interrupt mode.
+    . Peripheral interrupts (USART2_IRQn, ...) require both NVIC-level and peripheral-level enabling.
+    . Disabling interrupts follows a similar process.

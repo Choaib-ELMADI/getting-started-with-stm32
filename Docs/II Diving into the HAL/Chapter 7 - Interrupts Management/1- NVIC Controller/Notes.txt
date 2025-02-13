@@ -9,6 +9,9 @@
         - Interrupt Requests (IRQ) from external peripherals
     . ISRs (Interrupt Service Routines) are linked to interrupts via a vector table.
 
+    => View image:
+        + "Images/Figure 7.1 - The relation between the NVIC controller, the Cortex-M core and the STM32 peripherals.png"
+
 2. Vector Table in STM32:
     . Cortex-M processors have 15 fixed system exceptions, with some reserved for future use.
     . Key exceptions:
@@ -26,6 +29,9 @@
         - Cortex-M0/0+: Up to 32 external interrupts.
         - Cortex-M3/4/7: Up to 240 external interrupts.
         - Cortex-M33: Up to 480 external interrupts.
+
+    => View image:
+        + "Images/Figure 7.2 - The minimal layout of the vector table in an STM32 MCU based on a Cortex-M3_M4_M7 core.png"
 
 3. Vector Table Location and Configuration:
     . The vector table starts at address 0x00000000 by default.
