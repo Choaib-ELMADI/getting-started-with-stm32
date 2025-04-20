@@ -1,0 +1,23 @@
+1. NUCLEO Boards:
+    . In 2015, ST introduced a new range of development boards called Nucleo.
+    . Three main Nucleo groups (LQFP -> Low-Profile Quad Flat Package):
+        - Nucleo-32   (LQFP-32 package)
+        - Nucleo-64   (LQFP-64 package) ==> The one I am using! (STM32F446RE)
+        - Nucleo-144 (LQFP-144 package)
+
+2. Features of NUCLEO Boards:
+    . Two main sections:
+        > ST-LINK 2.1 Debugger (mini-USB interface, firmware uploading, step-by-step debugging, Virtual COM Port for communication).
+        > Main Board (MCU, RESET button, user button, LED, pad for an external high-speed crystal).
+    . Five GPIO ports:
+        - GPIOA --> 16 pins
+        - GPIOB --> 16 pins
+        - GPIOC --> 16 pins
+        - GPIOD --> 1 pin
+        - GPIOH --> 2 pins
+
+3. Needed Software Tools:
+    . ST-LINK Driver (driver for ST-LINK v2 & ST-LINK v2.1)
+    . ST-LINK Firmware Upgrade
+    . STM32 CubeMX
+    . STM32 CubeIDE or KEIL MDK-5

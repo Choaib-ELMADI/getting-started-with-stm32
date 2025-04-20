@@ -3,3 +3,6 @@ Docs/**/* linguist-documentation=false
 
 Examples/* linguist-documentation=false
 Examples/**/* linguist-documentation=false
+
+Notes/* linguist-documentation=false
+Notes/**/* linguist-documentation=false

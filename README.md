@@ -18,7 +18,8 @@ I'm using the `Nucleo-F446RE` board for learning and experimenting with STM32 mi
 
 - **Docs**: Notes extracted from the book.
 - **Examples**: C and Assembly programs.
-- **Projects**: Practical implementations and experiments.
+- **Notes**: Notes extracted from videos.
+- **Projects WS**: Practical implementations and experiments.
 - **Nucleo-F446RE**: Contains all the original projects and examples from the book repo.
 - **Mastering STM32 - Second Edition.pdf**: The original PDF file of the book.
 
