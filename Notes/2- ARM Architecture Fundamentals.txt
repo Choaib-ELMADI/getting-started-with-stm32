@@ -1,0 +1,29 @@
+1. ARM Architecture Core:
+    . Mainly, the ARM architecture core consists of:
+        - RISC Architecture
+        - High Code Density: Amount of memory space executable instructions take
+        - Power Efficiency
+
+2. ARM Architectures:
+    . ARM7          // old versions
+    . ARM9          // old versions
+    . ARM11         // old versions
+
+    . ARM Cortex-A:
+        - Used in: Smart phones, Tablets, Desktop, Servers, ...
+        - Example: Cortex-A5, Cortex-A7, Cortex-A8, Cortex-A9, Cortex-A12, Cortex-A15
+
+    . ARM Cortex-R:
+        - Used in: 5G Modems, Automobile industry, Medical industry, ...
+        - Example: Cortex-R5, Cortex-R7, Cortex-R8, Cortex-R4, Cortex-R52
+
+    . ARM Cortex-M:
+        - Used in: Embedded applications, Industrial standard applications, ...
+        - Example: Cortex-M0, Cortex-M0+, Cortex-M3, Cortex-M4, Cortex-M7
+
+3. Microcontroller with ARM Core:
+    . The main hardware components within an ARM-based microcontroller are:
+        - ARM Processor: Process instructions and manipulate data
+        - Controllers
+        - Peripherals
+        - Buses
