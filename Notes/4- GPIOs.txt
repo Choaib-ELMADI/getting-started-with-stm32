@@ -1,0 +1,10 @@
+1. General Purpose Input/Output Pins:
+    . A microcontroller pins can be used for:
+        - Reading digital signals -> if configured as INPUT
+        - Generating triggers     -> if configured as OUTPUT
+        - Issuing interrupts      -> if configured as EXTERNAL INTERRUPT PIN
+
+    . A GPIO Port is just a collection of fixed number of I\O pins:
+        -  8-bit GPIO port -->  8 pins
+        - 16-bit GPIO port --> 16 pins
+        - 32-bit GPIO port --> 32 pins

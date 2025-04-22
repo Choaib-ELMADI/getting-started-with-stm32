@@ -9,12 +9,6 @@
     . Two main sections:
         > ST-LINK 2.1 Debugger (mini-USB interface, firmware uploading, step-by-step debugging, Virtual COM Port for communication).
         > Main Board (MCU, RESET button, user button, LED, pad for an external high-speed crystal).
-    . Five GPIO ports:
-        - GPIOA --> 16 pins
-        - GPIOB --> 16 pins
-        - GPIOC --> 16 pins
-        - GPIOD --> 1 pin
-        - GPIOH --> 2 pins
 
 3. Needed Software Tools:
     . ST-LINK Driver (driver for ST-LINK v2 & ST-LINK v2.1)
