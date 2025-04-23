@@ -72,3 +72,21 @@ graph TD
 - `Memory Controller` connects different types of memory to the processor.
 - `APB` stands for `Advanced Peripheral Bus`.
 - The `AHB to APB` bridge is an AHB slave, providing an interface between the high-speed AHB and the low-power APB.
+
+<br>
+
+# GPIOs Variant Configurations
+
+<div align="center">
+
+![Input Mode - High Impedance](../Assets/4-1%20input-mode-high-impedance.png)
+
+![Input Mode - Pull UP](../Assets/4-2%20input-mode-pull-up.png)
+
+![Input Mode - Pull DOWN](../Assets/4-3%20input-mode-pull-down.png)
+
+![Output Mode - Push Pull](../Assets/4-4%20output-mode-push-pull.png)
+
+![Output Mode - Open Drain](../Assets/4-5%20output-mode-open-drain.png)
+
+</div>
