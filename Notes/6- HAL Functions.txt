@@ -1,4 +1,5 @@
 HAL_GPIO_WritePin(GPIO, GPIO_PIN, GPIO_PinState);   --> Turn ON & OFF a digital pin
 //           User_Label_GPIO_Port, User_Label_Pin   --> Ports and pins naming if labels were provided when configuring the project in CubeMX
+HAL_GPIO_TogglePin(GPIO, GPIO_PIN);                 --> Toggle GPIO pin state
 
 HAL_Delay(ms);                                      --> Stop program execution (in milliseconds)
