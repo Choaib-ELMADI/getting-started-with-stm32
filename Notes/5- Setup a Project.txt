@@ -24,3 +24,22 @@
         . Under 'Code Generator', select 'Copy only the necessary library files'
         . Click 'GENERATE CODE'
         . Congrats! You're now ready to start coding!
+
+2. Update / Complete the Generated Code:
+    . Open the project in 'CubeIDE' software
+    . Update and complete the auto generated code
+    . Build the project by clicking the 'Build' icon, Build 'Debug' or Build 'Release'
+
+3. Update the Board Firmware:
+    1. Connecting the board:
+        . Power up the board with your PC   --> LD1 should be ON and RED
+        . Open 'CubeProgrammer' software
+        . Detect available boards and select the target one
+        . Click 'Connect'                   --> LD1 should now be blinking in RED and GREEN
+
+    2. Updating the firmware:
+        . Click the 'Erasing & Programming' tab
+        . Under 'Download', select the '.elf' generated project file
+        . Under 'Download', check the programming conditions
+        . Click 'Start Programming'
+        . And BOOOM! Congrats!
