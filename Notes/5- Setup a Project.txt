@@ -1,0 +1,26 @@
+1. Configure the Microcontroller Requirements:
+    1. Selecting the target board:
+        . Open the 'CubeMX' software
+        . Go to: File > New Project
+        . Select 'Board Selector'
+        . Under 'PRODUCT INFO', Under 'Type', check 'Nucleo-64' and search for "NUCLEO-F446RE"
+        . Double-click on it to start configurations. A new window will open!
+
+    2. Configuring the clock frequency:
+        . Click 'Clock Configuration' tab
+        . In the 'HCLK (MHz)' input, type the required clock frequency
+        . Click enter and wait to search for solutions
+
+    3. Configuring the IO pins:
+        . Click 'Pinout & Configuration' tab
+        . By default, all the pins are uninitialized.
+        . Click the pin to configure and select the mode from the list
+        . Right-click on the pin, select 'Enter User Label' to change the pin label (label accessible in code)
+
+    4. Project settings:
+        . Click 'Project Manager' tab
+        . Enter the project details
+        . Select a 'Toolchain / IDE'
+        . Under 'Code Generator', select 'Copy only the necessary library files'
+        . Click 'GENERATE CODE'
+        . Congrats! You're now ready to start coding!
