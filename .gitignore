@@ -1,5 +1,7 @@
 .vscode
 
+.metadata
+
 *.exe
 *.i
 
