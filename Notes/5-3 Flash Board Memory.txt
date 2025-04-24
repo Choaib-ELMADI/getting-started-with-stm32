@@ -1,0 +1,22 @@
+1. Flash the Board Memory using CubeProgrammer:
+    1. Connecting the board:
+        . Power up the board with your PC   --> LD1 should be ON and RED (Debugger is not active)
+        . Open 'CubeProgrammer' software
+        . Detect available boards and select the target one
+        . Click 'Connect'                   --> LD1 should now be blinking in RED and GREEN (Debugger is active)
+
+    2. Flashing the memory:
+        . Click the 'Erasing & Programming' tab
+        . Under 'Download', select the '.elf' generated project file
+        . Under 'Download', check the programming conditions
+        . Click 'Start Programming'
+        . And BOOOM! Congrats!
+
+2. Flash the Board Memory using CubeIDE:
+    . Power up the board with your PC       --> LD1 should be ON and RED (Debugger is not active)
+    . Click 'Debug' and select 'Debug Configurations'
+    . In the 'Main' tab, select your project and the '.elf' file
+    . Click the 'Debugger' tab and select the interface type (SWD / JTAG)
+    . Detect available boards and select the target one
+    . Click 'Debug'                         --> LD1 should now be blinking in RED and GREEN (Debugger is active)
+    . Now, you can continue debugging the program or just watch it in action!

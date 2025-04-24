@@ -1,0 +1,4 @@
+1. Update / Complete the Generated Code:
+    . Open the project in 'CubeIDE' software
+    . Update and complete the auto generated code
+    . Build the project by clicking the 'Build' icon, Build 'Debug' or Build 'Release'
