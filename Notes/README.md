@@ -65,15 +65,11 @@ graph TD
     linkStyle 7 stroke:#3D90D7,stroke-width:2px;
 ```
 
-<br>
-
 - `Interrupt Controllers` determine which peripheral can access the processor at specified times.
 - `AHB` stands for `Advanced High-Performance Bus`.
 - `Memory Controller` connects different types of memory to the processor.
 - `APB` stands for `Advanced Peripheral Bus`.
 - The `AHB to APB` bridge is an AHB slave, providing an interface between the high-speed AHB and the low-power APB.
-
-<br>
 
 # GPIOs Variant Configurations
 
