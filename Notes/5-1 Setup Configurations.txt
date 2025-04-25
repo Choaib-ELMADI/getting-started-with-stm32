@@ -1,4 +1,4 @@
-1. Configure the Microcontroller Requirements:
+1. Microcontroller Configuration using CubeMX:
     1. Selecting the target board:
         . Open the 'CubeMX' software
         . Go to: File > New Project
@@ -24,3 +24,14 @@
         . Under 'Code Generator', select 'Copy only the necessary library files'
         . Click 'GENERATE CODE'
         . Congrats! You're now ready to start coding!
+
+2. Microcontroller Configuration using CubeIDE:
+    . Open 'CubeIDE' software
+    . In the home page, click 'Create new STM32 project'
+    . Select 'Board Selector'
+    . Under 'PRODUCT INFO', Under 'Type', check 'Nucleo-64' and search for "NUCLEO-F446RE"
+    . Click 'Next'
+    . Give a project name and location
+    . Click 'Next'
+    . Select the desired 'Code Generator Options'
+    . Click 'Finish'
