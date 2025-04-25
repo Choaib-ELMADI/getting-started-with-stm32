@@ -1,4 +1,4 @@
-[![Choaib ELMADI - STM32](https://img.shields.io/badge/Choaib_ELMADI-STM32-8800dd)](https://elmadichoaib.vercel.app) ![Status - Learning](https://img.shields.io/badge/Status-Learning-2bd729)
+[![Choaib ELMADI - STM32](https://img.shields.io/badge/Choaib_ELMADI-STM32-8800dd)](https://elmadichoaib.vercel.app) ![Status - Learning](https://img.shields.io/badge/Status-Learning-2bd729) ![Platform - STM32](https://img.shields.io/badge/Platform-STM32-f7d620)
 
 # Getting Started with STM32
 
@@ -89,7 +89,7 @@ I'm using the `Nucleo-F446RE` board for learning and experimenting with STM32 mi
 
 - **Docs**: Notes extracted from the book.
 - **Examples**: C and Assembly programs.
-- **Notes**: Notes extracted from videos.
+- **Notes**: Summaries and explanations from various sources. Recommended to check for quick understanding and diverse insights.
 - **Projects WS**: Practical implementations and experiments.
 - **Nucleo-F446RE**: Contains all the original projects and examples from the book repo.
 - **Mastering STM32 - Second Edition.pdf**: The original PDF file of the book.
