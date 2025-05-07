@@ -1,0 +1,42 @@
+1. Timers Applications:
+    . Generating time delays
+    . Measuring pulses frequency
+    . Generating PWM signals
+    . Triggering external devices or peripherals
+
+2. Types of Timers:
+    . A timer is actually a counter that counts time, and there are two types:
+        - UP Counter: counts from 0 to a preprogrammed value (also called 'period')!
+        - DOWN Counter: counts from a preprogrammed value to 0!
+
+3. STM32 Nucleo-F446RE Timers:
+    . There are three types of timers in the Nucleo-F446RE board:
+        - Basic Timer           -> TIMER6 and TIMER7
+        - General Purpose Timer -> TIMER2 to TIMER5 (32-bit) and TIMER9 to TIMER14 (16-bit)
+        - Advanced Timer        -> TIMER1 and TIMER8
+
+4. Timer Modes:
+    . Interrupt Mode
+    . Output Compare Mode
+    . Input Capture Mode
+
+5. Timer Settings:
+    . CNTx_CLK = TIMx_CLK / (PRESCALER + 1), with:
+        > CNTx_CLK  --> Prescaler output, which is our desired clock frequency
+        > TIMx_CLK  --> Used MCU clock frequency
+        > PRESCALER --> Prescaler configured value
+
+    . In this case, the time for one tick (aka 'timer period') of the timer is: 1 / CNTx_CLK second(s).
+
+    . Based on our required time delay, and the calculated timer period, we load the appropriate preprogrammed value.
+
+6. Timer Configurations with CubeMX:
+    . For a 1s delay, we calculated these values for TIMER6: FR = 16MHz, PRESCALER = 15999, PERIOD = 1000
+    . TIMER6 configuration steps:
+        - Open 'CubeMX' software
+        - Complete the initial board / MCU setup
+        - Under 'Clock Configuration' tab, for the 'System Clock Mux', select 'HSI' and make sure 'HCLK (MHz)' is set to 16
+        - Under 'Pinout & Configuration', under 'Timers', click TIM6
+        - Check the 'Activated' checkbox
+        - In 'Parameter Settings', set the prescaler and the counter period
+        - In 'NVIC Settings', enable TIM6 global interrupt
