@@ -15,16 +15,12 @@
         - General Purpose Timer -> TIMER2 to TIMER5 (32-bit) and TIMER9 to TIMER14 (16-bit)
         - Advanced Timer        -> TIMER1 and TIMER8
 
-<<<<<<< HEAD
 4. Timer Modes:
     . Interrupt Mode
     . Output Compare Mode
     . Input Capture Mode
 
 5. Timer Settings:
-=======
-4. Timer Settings:
->>>>>>> e4cbadd492db001f28e641161662bc9109917f13
     . CNTx_CLK = TIMx_CLK / (PRESCALER + 1), with:
         > CNTx_CLK  --> Prescaler output, which is our desired clock frequency
         > TIMx_CLK  --> Used MCU clock frequency
@@ -34,11 +30,7 @@
 
     . Based on our required time delay, and the calculated timer period, we load the appropriate preprogrammed value.
 
-<<<<<<< HEAD
 6. Timer Configurations with CubeMX:
-=======
-5. Timer Configurations with CubeMX:
->>>>>>> e4cbadd492db001f28e641161662bc9109917f13
     . For a 1s delay, we calculated these values for TIMER6: FR = 16MHz, PRESCALER = 15999, PERIOD = 1000
     . TIMER6 configuration steps:
         - Open 'CubeMX' software
