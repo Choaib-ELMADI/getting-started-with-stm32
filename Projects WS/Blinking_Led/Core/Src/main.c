@@ -22,6 +22,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include <stdio.h>
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -55,6 +57,16 @@ static void MX_GPIO_Init(void);
 /* Private user code ---------------------------------------------------------*/
 
 /* USER CODE BEGIN 0 */
+
+int _write(int file, char *ptr, int len) {
+	(void) file;
+	int DataIdx;
+
+	for (DataIdx = 0; DataIdx < len; DataIdx++) {
+		ITM_SendChar(*ptr++);
+	}
+	return len;
+}
 
 /* USER CODE END 0 */
 
@@ -92,11 +104,16 @@ int main(void) {
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 	while (1) {
-		/* USER CODE END WHILE */
+
+		printf("Pin is set!\n");
 		HAL_GPIO_WritePin(Onboard_Led_GPIO_Port, Onboard_Led_Pin, GPIO_PIN_SET);
 		HAL_Delay(500);
+		printf("Pin is reset!\n");
 		HAL_GPIO_WritePin(Onboard_Led_GPIO_Port, Onboard_Led_Pin, GPIO_PIN_RESET);
 		HAL_Delay(500);
+
+		/* USER CODE END WHILE */
+
 		/* USER CODE BEGIN 3 */
 	}
 	/* USER CODE END 3 */
