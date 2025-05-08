@@ -19,6 +19,11 @@ HAL_Delay(ms);                                      --> Stop program execution (
 
 HAL_TIM_Base_Start_IT(&htim6);                      --> Start the timer TIM6 in interrupt mode
 void TIM6_DAC_IRQHandler(void);                     --> TIM6 interrupts handler. Interrupt logic is done here!
+
 HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_1);            --> Start the timer TIM2 in output compare mode using channel 1 (PA5)
+
 HAL_TIM_IC_Start_IT(&htim2, TIM_CHANNEL_1);         --> Start the timer TIM2 in input capture mode with interrupts using channel 1 (PA0)
 __HAL_TIM_GetCounter(&htim2);                       --> Get the counter value of the timer TIM2
+
+HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);           --> Start the timer TIM2 for PWM signals generation in channel 1 (PA5)
+htim2.Instance->CCR1 = dutyCycle;                   --> Set the duty cycle of the TIM2 channel 1 signal
