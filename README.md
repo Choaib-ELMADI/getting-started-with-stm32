@@ -12,6 +12,8 @@ This repository documents my journey with STM32 microcontrollers while studying 
 
 ## ARM Buses and Their Types
 
+Here's a simplified diagram explaining the internal bus architecture in ARM-based STM32 microcontrollers:
+
 <div align="center">
 
 ```mermaid
@@ -87,12 +89,12 @@ I'm using the `Nucleo-F446RE` board for learning and experimenting with STM32 mi
 
 ## Contents
 
-- **Docs**: Notes extracted from the book.
-- **Examples**: C and Assembly programs.
-- **Notes**: Summaries and explanations from various sources. Recommended to check for quick understanding and diverse insights.
-- **Projects WS**: Practical implementations and experiments.
-- **Nucleo-F446RE**: Contains all the original projects and examples from the book repo.
-- **Mastering STM32 - Second Edition.pdf**: The original PDF file of the book.
+- 📘 **Docs**: Notes extracted from the _Mastering STM32_ book.
+- 🧪 **Examples**: C and Assembly programs to explore low-level concepts.
+- 📝 **Notes**: Quick summaries and explanations from various sources.
+- 🧰 **Projects WS**: Hands-on implementations and learning experiments.
+- 🔧 **Nucleo-F446RE**: Projects tailored for the Nucleo-F446RE board.
+- 📦 **Learn by Building**: Folder for project-based learning. Project names and paths are listed in `projects.txt`, while actual implementations are found in `Projects WS`.
 
 ## STM32 Development Tools
 
@@ -100,13 +102,13 @@ Here are some essential tools for STM32 development:
 
 - **[STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)**: An all-in-one IDE that integrates a compiler, debugger, and project manager for STM32 development.
 - **[STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html)**: A graphical tool to configure STM32 microcontrollers and generate initialization code.
-- **[STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html)**: A tool for flashing firmware onto STM32 microcontrollers via various interfaces.
+- **[STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html)**: A tool for flashing firmware onto STM32 microcontrollers via various interfaces, without the need for an external/onboard debugger.
 - **[STM32CubeCLT](https://www.st.com/en/development-tools/stm32cubeclt.html)**: A command-line tool for building, debugging, and flashing STM32 projects.
 - **[STMCUFinder](https://www.st.com/en/development-tools/st-mcu-finder-pc.html)**: A search tool to find STM32 and STM8 microcontrollers and their technical documentation.
 
 ## HAL (Hardware Abstraction Layer)
 
-HAL `Hardware Abstraction Layer` is a high-level API provided by `STMicroelectronics` to simplify the development of applications on STM32 microcontrollers. It abstracts the low-level hardware details and provides a standardized way to interact with peripherals.
+The `Hardware Abstraction Layer` (HAL) is an STM32 API that simplifies peripheral control by hiding low-level register manipulation.
 
 - **Portability**: Code written using HAL can be easily adapted to different STM32 models with minimal changes.
 - **Ease of Use**: HAL provides user-friendly functions for configuring and controlling peripherals without dealing with complex register settings.
@@ -117,7 +119,7 @@ HAL is widely used for rapid development, but it has performance trade-offs comp
 
 ## STM32 Animations
 
-I've also created some video animations using `Manim` to visualize some STM32 concepts. These animations aim to simplify complex topics and enhance learning. You can check them out in [manim-animation](https://github.com/Choaib-ELMADI/manim-animation).
+I've created some video animations using `Manim` to visualize some STM32 concepts. These animations aim to simplify complex topics and enhance learning. You can check them out in [manim-animation](https://github.com/Choaib-ELMADI/manim-animation).
 
 <div align="center">
 
@@ -127,4 +129,4 @@ I've also created some video animations using `Manim` to visualize some STM32 co
 
 </div>
 
-Feel free to explore the repository and contribute!
+Whether you're just starting with STM32 or revisiting key concepts, I hope this repo helps you learn and grow. Contributions and suggestions are always welcome!
