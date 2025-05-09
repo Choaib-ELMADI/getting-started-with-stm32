@@ -89,12 +89,13 @@ I'm using the `Nucleo-F446RE` board for learning and experimenting with STM32 mi
 
 ## Contents
 
-- 📘 **Docs**: Notes extracted from the _Mastering STM32_ book.
-- 🧪 **Examples**: C and Assembly programs to explore low-level concepts.
-- 📝 **Notes**: Quick summaries and explanations from various sources.
-- 🧰 **Projects WS**: Hands-on implementations and learning experiments.
-- 🔧 **Nucleo-F446RE**: Projects tailored for the Nucleo-F446RE board.
-- 📦 **Learn by Building**: Folder for project-based learning. Project names and paths are listed in `projects.txt`, while actual implementations are found in `Projects WS`.
+- **Datasheet**: Contains the STM32F446xC/E datasheet, reference manual, and the Nucleo-F446RE board schematic.
+- **Docs**: Notes extracted from the _Mastering STM32_ book.
+- **Examples**: C and Assembly programs to explore low-level concepts.
+- **Notes**: Quick summaries and explanations from various sources.
+- **Projects WS**: Hands-on implementations and learning experiments.
+- **Nucleo-F446RE**: Projects tailored for the Nucleo-F446RE board.
+- **Learn by Building**: Folder for project-based learning. Project names and paths are listed in `projects.txt`, while actual implementations are found in `Projects WS`.
 
 ## STM32 Development Tools
 
