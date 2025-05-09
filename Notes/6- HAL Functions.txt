@@ -27,3 +27,10 @@ __HAL_TIM_GetCounter(&htim2);                       --> Get the counter value of
 
 HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);           --> Start the timer TIM2 for PWM signals generation in channel 1 (PA5)
 htim2.Instance->CCR1 = dutyCycle;                   --> Set the duty cycle of the TIM2 channel 1 signal
+
+*-------------------------------------------------*
+|                      UART                       |
+*-------------------------------------------------*
+
+HAL_UART_Transmit(&huart2, data, size, timeout);    --> Transmit data using the USART2 peripheral
+HAL_UART_Receive(&huart2, buffer, size, timeout);   --> Receive buffer data using the USART2 peripheral
