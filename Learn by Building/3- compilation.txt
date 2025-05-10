@@ -1,0 +1,34 @@
+*---------------------------------------------------------------------*
+|                          COMPILATION FILES                          |
+*---------------------------------------------------------------------*
+
+-> .elf (Executable and Linkable Format):
+    - The content includes code, data, and detailed metadata, which incorporates debugging information and symbol tables.
+    - If your goal is to flash and debug the code using debuggers, then use this format.
+
+-> .bin (Binary):
+    - Raw binary image of the compiled code and data. It lacks address information and metadata.
+    - .bin files are used for programming a device memory where the programmer/bootloader already knows the exact memory address where to load the program.
+
+-> .hex (Intel Hex Format):
+    - ASCII text file format representing binary data along with address information and data integrity checksums.
+    - .hex files include a checksum which can be used to verify the integrity of the data as it is programmed into memory, preventing errors during programming.
+
+*---------------------------------------------------------------------*
+|                              BOOTLOADER                             |
+*---------------------------------------------------------------------*
+
+- Power the board using a mini USB cable
+- Open 'Device Manager' and note the virtual COM port number
+- Put the board into boot mode:
+    - Remove the jumper on JP6 (BOOT0 pin)
+    - Press the reset button to ensure the MCU starts in boot mode
+- Open 'CubeProgrammer' software
+- Select 'UART' as the interface, then configure the COM port and baud rate
+- Under 'Memory & File editing', click 'Open file' and select the .bin output file
+- Click 'Connect' to establish communication
+- Click 'Download' to flash the program
+- Once done, press the reset button
+- To exit boot mode:
+    - Reconnect the jumper on JP6 (BOOT0 pin)
+    - Press the reset button again
