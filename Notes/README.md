@@ -2,6 +2,8 @@ To get started with `bare metal programming`, check the following repo: [Bare Me
 
 ## ARM Buses and Their Types
 
+Here's a simplified diagram explaining the internal bus architecture in ARM-based STM32 microcontrollers:
+
 <div align="center">
 
 ```mermaid
@@ -78,6 +80,8 @@ graph TD
 - The `AHB to APB` bridge is an AHB slave, providing an interface between the high-speed AHB and the low-power APB.
 
 ## GPIOs Variant Configurations
+
+This section illustrates the various GPIO modes and how they affect pin behavior:
 
 <div align="center">
 

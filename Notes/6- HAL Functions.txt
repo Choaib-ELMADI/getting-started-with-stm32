@@ -2,6 +2,7 @@
 |                      GPIO                       |
 *-------------------------------------------------*
 
+HAL_GPIO_Init(GPIO, &GPIO_InitStruct);              --> Configure GPIO port pins
 HAL_GPIO_WritePin(GPIO, GPIO_PIN, GPIO_PinState);   --> Turn ON & OFF a digital pin (GPIO_PIN_SET, GPIO_PIN_RESET)
 |            User_Label_GPIO_Port, User_Label_Pin   --> Ports and pins naming if labels were provided when configuring the project in CubeMX
 HAL_GPIO_TogglePin(GPIO, GPIO_PIN);                 --> Toggle GPIO pin state

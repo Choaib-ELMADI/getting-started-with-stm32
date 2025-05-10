@@ -1,0 +1,6 @@
+*---------------------------------------------------------------------*
+|                                GPIO                                 |
+*---------------------------------------------------------------------*
+
+- The 'output speed' setting for GPIO pins controls the slew rate of the pin.
+- The slew rate refers to the rate at which the output voltage can change from low to high and vice versa.

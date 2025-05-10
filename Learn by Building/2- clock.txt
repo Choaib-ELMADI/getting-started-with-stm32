@@ -1,0 +1,12 @@
+*---------------------------------------------------------------------*
+|                               CLOCK                                 |
+*---------------------------------------------------------------------*
+
+- HCLK refers to the AHB (Advanced High-performance Bus) clock.
+- This clock is derived from the system clock (SYSCLK).
+- It serves as the main clock for the AHB bus, which is connecting the CPU, memory and peripherals.
+
+- STM32 microcontrollers can run using different clock sources:
+    + Internal High Speed Oscillator (HSI), 16MHz
+    + External High Speed Oscillator (HSE), 4MHz - 26MHz
+    + Phase Locked Loop (PLL), 1MHz
