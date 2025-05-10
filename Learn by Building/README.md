@@ -7,4 +7,6 @@ This folder lists projects and notes built while exploring embedded systems by b
 - **Goals**:
 
   - Get familiar with basic GPIO control
+  - Usage of timers for time base generation
+  - Usage of GPIO external interrupts
   - Usage of a logic analyzer for debugging and observing hardware

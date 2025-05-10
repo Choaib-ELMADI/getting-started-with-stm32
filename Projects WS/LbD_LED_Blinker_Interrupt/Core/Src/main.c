@@ -58,6 +58,7 @@ static void MX_TIM6_Init(void);
 /* USER CODE BEGIN 0 */
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*);
+void HAL_GPIO_EXTI_Callback(uint16_t);
 
 /* USER CODE END 0 */
 
@@ -162,7 +163,7 @@ static void MX_TIM6_Init(void) {
 	htim6.Instance = TIM6;
 	htim6.Init.Prescaler = 7999;
 	htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim6.Init.Period = 100;
+	htim6.Init.Period = 2000;
 	htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
 	if (HAL_TIM_Base_Init(&htim6) != HAL_OK) {
 		Error_Handler();
@@ -189,10 +190,17 @@ static void MX_GPIO_Init(void) {
 	/* USER CODE END MX_GPIO_Init_1 */
 
 	/* GPIO Ports Clock Enable */
+	__HAL_RCC_GPIOC_CLK_ENABLE();
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(USER_LED_RED_GPIO_Port, USER_LED_RED_Pin, GPIO_PIN_RESET);
+
+	/*Configure GPIO pin : USER_BUTTON_Pin */
+	GPIO_InitStruct.Pin = USER_BUTTON_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	HAL_GPIO_Init(USER_BUTTON_GPIO_Port, &GPIO_InitStruct);
 
 	/*Configure GPIO pin : USER_LED_RED_Pin */
 	GPIO_InitStruct.Pin = USER_LED_RED_Pin;
@@ -200,6 +208,10 @@ static void MX_GPIO_Init(void) {
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(USER_LED_RED_GPIO_Port, &GPIO_InitStruct);
+
+	/* EXTI interrupt init*/
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 	/* USER CODE BEGIN MX_GPIO_Init_2 */
 	/* USER CODE END MX_GPIO_Init_2 */
@@ -209,6 +221,11 @@ static void MX_GPIO_Init(void) {
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	UNUSED(htim);
+	HAL_GPIO_TogglePin(USER_LED_RED_GPIO_Port, USER_LED_RED_Pin);
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+	UNUSED(GPIO_Pin);
 	HAL_GPIO_TogglePin(USER_LED_RED_GPIO_Port, USER_LED_RED_Pin);
 }
 

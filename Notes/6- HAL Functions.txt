@@ -8,6 +8,8 @@ HAL_GPIO_WritePin(GPIO, GPIO_PIN, GPIO_PinState);   --> Turn ON & OFF a digital 
 HAL_GPIO_TogglePin(GPIO, GPIO_PIN);                 --> Toggle GPIO pin state
 HAL_GPIO_ReadPin(GPIO, GPIO_PIN);                   --> Read GPIO pin state
 
+void HAL_GPIO_EXTI_Callback(uint16_t);              --> GPIO external interrupt logic handler
+
 *-------------------------------------------------*
 |                     DELAY                       |
 *-------------------------------------------------*
