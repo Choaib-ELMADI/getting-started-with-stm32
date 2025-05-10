@@ -1,0 +1,9 @@
+*---------------------------------------------------------------------*
+|                            BASIC TIMERS                             |
+*---------------------------------------------------------------------*
+
+- CLK_PSC is the main clock signal that comes from the RCC block (Reset and Clock Control).
+- PSC is a prescaler, which is a number that divides the clock signal to slow it down.
+- CLK_CNT is the clock count signal that updates CNT counter at each pulse.
+- ARR (Auto-Reload Register) stores a fix preprogrammed value.
+- When CNT counter reaches the ARR value, an interrupt is generated and CNT counter is reset.

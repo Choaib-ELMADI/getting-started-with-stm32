@@ -5,4 +5,5 @@ Course: Embedded Systems Bootcamp - Learn by Building Projects
     Path: ../Projects WS/LbD_LED_Blinker
     Goal:
         - Get familiar with basic GPIO control
+        - Usage of timers for time base generation
         - Usage of a logic analyzer for debugging and observing hardware

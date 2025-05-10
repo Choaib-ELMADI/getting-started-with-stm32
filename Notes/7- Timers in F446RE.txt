@@ -21,14 +21,18 @@
     . Input Capture Mode
 
 5. Timer Settings:
-    . CNTx_CLK = TIMx_CLK / (PRESCALER + 1), with:
-        > CNTx_CLK  --> Prescaler output, which is our desired clock frequency
-        > TIMx_CLK  --> Used MCU clock frequency
+    . PRESCALER = (CLK_PSC / CLK_CNT) - 1, with:
         > PRESCALER --> Prescaler configured value
+        > CLK_PSC   --> Timer main clock frequency
+        > CLK_CNT   --> Prescaler output, which is the timer count clock frequency
+        > ARR       --> Auto-reload register, a 2 bytes register
+        - In this case, the time for one tick (aka 'timer period') of the timer is: 1 / CLK_CNT second(s).
+        - Based on our required time base, and the calculated 'timer period', we load the appropriate ARR value.
 
-    . In this case, the time for one tick (aka 'timer period') of the timer is: 1 / CNTx_CLK second(s).
-
-    . Based on our required time delay, and the calculated timer period, we load the appropriate preprogrammed value.
+    . ARR = (CLK_CNT * (Desired time base in second(s))) - 1, with:
+        > CLK_CNT = CLK_PSC / (PRESCALER + 1)
+        > ARR       --> Auto-reload register, a 2 bytes register
+        > CLK_CNT   --> Prescaler output, which is the timer count clock frequency
 
 6. Timer Configurations with CubeMX:
     . For a 1s delay, we calculated these values for TIMER6: FR = 16MHz, PRESCALER = 15999, PERIOD = 1000
