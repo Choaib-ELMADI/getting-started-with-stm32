@@ -10,3 +10,12 @@ This folder lists projects and notes built while exploring embedded systems by b
   - Usage of timers for time base generation
   - Usage of GPIO external interrupts
   - Usage of a logic analyzer for debugging and observing hardware
+
+### [Orientation-based LED Control](../Projects%20WS/LbD_Orientation_LED_Control)
+
+- **Goals**:
+
+  - Reading data from the MPU6050 sensor using the I2C protocol
+  - Developping a mapping algorithm to convert values
+  - Usage of PWM signals for control
+  - Running FreeRTOS on STM32 microcontroller

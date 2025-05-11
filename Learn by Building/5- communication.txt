@@ -1,0 +1,19 @@
+*---------------------------------------------------------------------*
+|                                 I2C                                 |
+*---------------------------------------------------------------------*
+
+-> What is I2C?
+    - I2C (Inter-Integrated Circuit) is a synchronous, multi-controller, multi-peripheral, serial communication protocol.
+    - It is widely used in embedded systems for short-distance communication (devices on the same PCB).
+
+-> Features of I2C:
+    - It requires only 2 bidirectional open-drain lines called SDA and SCK (SCL).
+    - It's an address-based communication protocol, thus supports multiple peripherals on the same bus.
+    - Each device on the I2C bus has a unique 7-bit or 10-bit address.
+    - The controller sends the address of the target device with a read/write bit.
+    - Data transfer is synchronized with a clock signal provided by the controller device.
+    - Multiple speed modes:
+        + Standard Mode   --> 100 KHz
+        + Fast Mode       --> 400 KHz
+        + Fast Mode Plus  -->   1 MHz
+        + High-Speed Mode --> 3.4 MHz
