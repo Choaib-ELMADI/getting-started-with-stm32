@@ -105,6 +105,7 @@ Here are some essential tools for STM32 development:
 - **[STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html)**: A graphical tool to configure STM32 microcontrollers and generate initialization code.
 - **[STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html)**: A tool for flashing firmware onto STM32 microcontrollers via various interfaces, without the need for an external/onboard debugger.
 - **[STM32CubeCLT](https://www.st.com/en/development-tools/stm32cubeclt.html)**: A command-line tool for building, debugging, and flashing STM32 projects.
+- **[STM32CubeMonitor](https://www.st.com/en/development-tools/stm32cubemonitor.html)**: A monitoring tool to test STM32 applications at run-time.
 - **[STMCUFinder](https://www.st.com/en/development-tools/st-mcu-finder-pc.html)**: A search tool to find STM32 and STM8 microcontrollers and their technical documentation.
 
 ## HAL (Hardware Abstraction Layer)

@@ -60,12 +60,23 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+uint32_t g_counter = 0;
+volatile uint32_t g_channel_2_state = 500000;
+volatile uint32_t g_channel_3_state = 200000;
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	UNUSED(htim);
+	g_counter = 0;
+	g_channel_2_state = 500000;
+	g_channel_3_state = 200000;
 }
 
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
-	UNUSED(htim);
+	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2) {
+		g_channel_2_state = 0;
+	} else if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_3) {
+		g_channel_3_state = 0;
+	}
 }
 
 void HAL_TIM_ErrorCallback(TIM_HandleTypeDef *htim) {
@@ -106,6 +117,8 @@ int main(void) {
 	MX_TIM2_Init();
 	/* USER CODE BEGIN 2 */
 
+	__HAL_TIM_ENABLE_IT(&htim2, TIM_IT_UPDATE);
+
 	if (HAL_TIM_PWM_Start_IT(&htim2, TIM_CHANNEL_2) != HAL_OK) {
 		Error_Handler();
 	}
@@ -122,7 +135,10 @@ int main(void) {
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
+
+		g_counter = __HAL_TIM_GET_COUNTER(&htim2);
 	}
+
 	/* USER CODE END 3 */
 }
 
@@ -214,9 +230,9 @@ static void MX_TIM2_Init(void) {
 
 	/* USER CODE END TIM2_Init 1 */
 	htim2.Instance = TIM2;
-	htim2.Init.Prescaler = 7999;
+	htim2.Init.Prescaler = 7;
 	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim2.Init.Period = 1;
+	htim2.Init.Period = 1000000;
 	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
 	htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
 	if (HAL_TIM_Base_Init(&htim2) != HAL_OK) {
@@ -235,12 +251,13 @@ static void MX_TIM2_Init(void) {
 		Error_Handler();
 	}
 	sConfigOC.OCMode = TIM_OCMODE_PWM1;
-	sConfigOC.Pulse = 1;
+	sConfigOC.Pulse = 500000;
 	sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
 	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
 	if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK) {
 		Error_Handler();
 	}
+	sConfigOC.Pulse = 200000;
 	if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_3) != HAL_OK) {
 		Error_Handler();
 	}
