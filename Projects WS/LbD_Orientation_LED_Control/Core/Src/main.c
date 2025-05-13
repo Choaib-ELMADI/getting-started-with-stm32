@@ -22,6 +22,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "mpu6050.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,28 +62,7 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint32_t g_counter = 0;
-volatile uint32_t g_channel_2_state = 500000;
-volatile uint32_t g_channel_3_state = 200000;
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	UNUSED(htim);
-	g_counter = 0;
-	g_channel_2_state = 500000;
-	g_channel_3_state = 200000;
-}
-
-void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
-	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2) {
-		g_channel_2_state = 0;
-	} else if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_3) {
-		g_channel_3_state = 0;
-	}
-}
-
-void HAL_TIM_ErrorCallback(TIM_HandleTypeDef *htim) {
-	UNUSED(htim);
-}
+extern uint32_t g_counter;
 
 /* USER CODE END 0 */
 
@@ -115,6 +96,8 @@ int main(void) {
 	MX_I2C1_Init();
 	MX_TIM2_Init();
 	/* USER CODE BEGIN 2 */
+
+	mpu6050_init(&hi2c1, 0x68); // address = 0110 1000
 
 	__HAL_TIM_ENABLE_IT(&htim2, TIM_IT_UPDATE);
 
