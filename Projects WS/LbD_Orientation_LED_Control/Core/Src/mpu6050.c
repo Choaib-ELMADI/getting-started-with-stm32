@@ -3,20 +3,38 @@
 static uint8_t mpu6050_i2c_address;
 
 mpu6050_status_t mpu6050_init(I2C_HandleTypeDef *hi2c, uint8_t i2c_slave_address) {
-	mpu6050_i2c_address = i2c_slave_address;
-	uint8_t who_am_i_register_address = 117;
-	uint8_t register_value = 0;
+    mpu6050_i2c_address = i2c_slave_address;
 
-	if (HAL_I2C_Mem_Read(hi2c, i2c_slave_address, who_am_i_register_address, 1, &register_value, 1, 10) == HAL_OK) {
-		if (register_value == 0x68) {
-			printf("Valid MPU6050 device!");
-		} else {
-			printf("Invalid device address!");
-			return MPU6050_ERROR;
-		}
-	} else {
-		return MPU6050_ERROR;
-	}
+    // CHECK AVAILABLE MPU6050 DEVICE
+    uint8_t read_byte = 0;
+    if (mpu6050_read_byte(hi2c, MPU6050_WHOAMI_REG, &read_byte) != MPU6050_OK) {
+        printf("Something went wrong!\n");
+        return MPU6050_ERROR;
+    }
+
+    if (read_byte == 0x68 || read_byte == 0x98) {
+        printf("Valid MPU6050 device with address %X!\n", mpu6050_i2c_address);
+    } else {
+        printf("Invalid device address %X!\n", mpu6050_i2c_address);
+        return MPU6050_ERROR;
+    }
+
+    // DISABLE SLEEP MODE OF MPU6050
+    uint8_t data = 0x00;
+    if (mpu6050_write_byte(hi2c, MPU6050_PWR_MNG_REG, data) != MPU6050_OK) {
+    	printf("Something went wrong again!\n");
+        return MPU6050_ERROR;
+    }
 
 	return MPU6050_OK;
+}
+
+mpu6050_status_t mpu6050_read_byte(I2C_HandleTypeDef *hi2c, uint8_t register_address, uint8_t *data) {
+    HAL_StatusTypeDef status = HAL_I2C_Mem_Read(hi2c, mpu6050_i2c_address << 1, register_address, 1, data, 1, I2C_TIMEOUT);
+    return (status == HAL_OK) ? MPU6050_OK : MPU6050_ERROR;
+}
+
+mpu6050_status_t mpu6050_write_byte(I2C_HandleTypeDef *hi2c, uint8_t register_address, uint8_t data) {
+    HAL_StatusTypeDef status = HAL_I2C_Mem_Write(hi2c, mpu6050_i2c_address << 1, register_address, 1, &data, 1, I2C_TIMEOUT);
+    return (status == HAL_OK) ? MPU6050_OK : MPU6050_ERROR;
 }

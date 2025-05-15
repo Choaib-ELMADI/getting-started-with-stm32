@@ -119,6 +119,8 @@ int main(void) {
 		/* USER CODE BEGIN 3 */
 
 		g_counter = __HAL_TIM_GET_COUNTER(&htim2);
+		printf("g_counter = %d\n", (int)g_counter);
+		HAL_Delay(500);
 	}
 
 	/* USER CODE END 3 */
