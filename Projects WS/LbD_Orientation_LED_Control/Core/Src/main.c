@@ -60,6 +60,19 @@ static void MX_I2C1_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
+long map(long x, long in_min, long in_max, long out_min, long out_max) {
+	long result = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+
+	if (result > out_max) result = out_max;
+	else if (result < out_min) result = out_min;
+
+	return result;
+}
+
+void change_pwm_duty_cycle(uint32_t pwm_pulse, uint8_t channel) {
+	__HAL_TIM_SET_COMPARE(&htim2, channel, pwm_pulse);
+}
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -80,7 +93,7 @@ const mpu6050_accelerometer_data_t error_offset = {
 	.y = 0,
 	.z = 0
 };
-int16_t roll_angle;
+int16_t roll_angle, kalman_roll_angle;
 float dt = 0;
 
 /* USER CODE END 0 */
@@ -157,7 +170,12 @@ int main(void) {
 
 		g_accelerometer_data = mpu6050_accelerometer_calibration(&error_offset, &g_accelerometer_data);
 		roll_angle = atan2(g_accelerometer_data.y, g_accelerometer_data.z) * (180.0 / M_PI);
-		kalman_roll_angle = kalman_filter_get_angle(&kf, roll_angle, dt);
+		kalman_roll_angle = (int16_t)kalman_filter_get_angle(&kf, roll_angle, dt);
+
+		uint8_t channel = (kalman_roll_angle < 0) ? TIM_CHANNEL_2 : TIM_CHANNEL_3;
+		kalman_roll_angle = (kalman_roll_angle < 0) ? -kalman_roll_angle : kalman_roll_angle;
+		uint32_t pwm_pulse = map(kalman_roll_angle, MIN_POS_ANGLE, MAX_POS_ANGLE, MIN_PWM_PULSE, MAX_PWM_PULSE);
+		change_pwm_duty_cycle(pwm_pulse, channel);
 
 		// HAL_Delay(500);
 	}

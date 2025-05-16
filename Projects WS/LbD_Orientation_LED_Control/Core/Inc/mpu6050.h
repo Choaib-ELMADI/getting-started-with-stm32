@@ -10,6 +10,11 @@
 #define MPU6050_I2C_ADDRESS				0x68
 #define I2C_TIMEOUT                 	10UL
 
+#define MAX_POS_ANGLE					90
+#define MIN_POS_ANGLE					0
+#define MAX_PWM_PULSE					1000
+#define MIN_PWM_PULSE					0
+
 typedef enum {
 	MPU6050_OK    = 0x00U,
 	MPU6050_ERROR = 0x01U
