@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 
 #include "mpu6050.h"
+#include <math.h>
 
 /* USER CODE END Includes */
 
@@ -62,7 +63,21 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+// TODO: Connect the LEDs
+// TODO: Visualize the LEDs blinking
+// TODO: Connect the MPU6050 sensor
+// TODO: Debug MPU6050 connection
+// TODO: Calculate the error offset using CubeMonitor - xIdeal: 0, yIdeal: 0, zIdeal: 16 384
+// TODO: offset = raw - ideal
+
 extern uint32_t g_counter;
+mpu6050_accelerometer_data_t g_accelerometer_data;
+const mpu6050_accelerometer_data_t error_offset = {
+	.x = 0,
+	.y = 0,
+	.z = 0
+};
+int16_t roll_angle;
 
 /* USER CODE END 0 */
 
@@ -97,7 +112,9 @@ int main(void) {
 	MX_TIM2_Init();
 	/* USER CODE BEGIN 2 */
 
-	mpu6050_init(&hi2c1, 0x68); // address = 0110 1000
+	if (mpu6050_init(&hi2c1, MPU6050_I2C_ADDRESS) != MPU6050_OK) {
+		Error_Handler();
+	}
 
 	__HAL_TIM_ENABLE_IT(&htim2, TIM_IT_UPDATE);
 
@@ -118,9 +135,18 @@ int main(void) {
 
 		/* USER CODE BEGIN 3 */
 
+#ifdef PWM_DEBUG
 		g_counter = __HAL_TIM_GET_COUNTER(&htim2);
-		printf("g_counter = %d\n", (int)g_counter);
-		HAL_Delay(500);
+#endif // PWM_DEBUG
+
+		if (mpu6050_read_accelerometer_data(&hi2c1, MPU6050_I2C_ADDRESS, &g_accelerometer_data) != MPU6050_OK) {
+			Error_Handler();
+		}
+
+		g_accelerometer_data = mpu6050_accelerometer_calibration(&error_offset, &g_accelerometer_data);
+		roll_angle = atan2(g_accelerometer_data.y, g_accelerometer_data.z) * (180.0 / M_PI);
+
+		// HAL_Delay(500);
 	}
 
 	/* USER CODE END 3 */
