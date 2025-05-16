@@ -22,8 +22,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "mpu6050.h"
 #include <math.h>
+
+#include "kalman_filter.h"
+#include "mpu6050.h"
 
 /* USER CODE END Includes */
 
@@ -69,6 +71,7 @@ static void MX_TIM2_Init(void);
 // TODO: Debug MPU6050 connection
 // TODO: Calculate the error offset using CubeMonitor - xIdeal: 0, yIdeal: 0, zIdeal: 16 384
 // TODO: offset = raw - ideal
+// TODO: Visualize raw and filtered angle using CubeMonitor
 
 extern uint32_t g_counter;
 mpu6050_accelerometer_data_t g_accelerometer_data;
@@ -78,6 +81,7 @@ const mpu6050_accelerometer_data_t error_offset = {
 	.z = 0
 };
 int16_t roll_angle;
+float dt = 0;
 
 /* USER CODE END 0 */
 
@@ -112,6 +116,9 @@ int main(void) {
 	MX_TIM2_Init();
 	/* USER CODE BEGIN 2 */
 
+	KalmanFilter kf;
+	kalman_filter_init(&kf);
+
 	if (mpu6050_init(&hi2c1, MPU6050_I2C_ADDRESS) != MPU6050_OK) {
 		Error_Handler();
 	}
@@ -130,14 +137,19 @@ int main(void) {
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
+
+	uint32_t previous_tick = HAL_GetTick();
+
 	while (1) {
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
 
-#ifdef PWM_DEBUG
+		uint32_t current_tick = HAL_GetTick();
+		dt = (current_tick - previous_tick) / 1000.0f;
+		previous_tick = current_tick;
+
 		g_counter = __HAL_TIM_GET_COUNTER(&htim2);
-#endif // PWM_DEBUG
 
 		if (mpu6050_read_accelerometer_data(&hi2c1, MPU6050_I2C_ADDRESS, &g_accelerometer_data) != MPU6050_OK) {
 			Error_Handler();
@@ -145,6 +157,7 @@ int main(void) {
 
 		g_accelerometer_data = mpu6050_accelerometer_calibration(&error_offset, &g_accelerometer_data);
 		roll_angle = atan2(g_accelerometer_data.y, g_accelerometer_data.z) * (180.0 / M_PI);
+		kalman_roll_angle = kalman_filter_get_angle(&kf, roll_angle, dt);
 
 		// HAL_Delay(500);
 	}

@@ -6,6 +6,7 @@
 #define MPU6050_WHOAMI_REG          	((uint8_t)117)
 #define MPU6050_PWR_MNG_REG         	((uint8_t)107)
 #define ACCELEROMETER_REG_BASE_ADDRESS	((uint8_t)59)
+#define MPU6050_CONFIG_REG				((uint8_t)26)
 #define MPU6050_I2C_ADDRESS				0x68
 #define I2C_TIMEOUT                 	10UL
 
@@ -29,5 +30,7 @@ mpu6050_status_t mpu6050_init(I2C_HandleTypeDef*, uint8_t);
 mpu6050_status_t mpu6050_read_accelerometer_data(I2C_HandleTypeDef*, uint8_t, mpu6050_accelerometer_data_t*);
 
 mpu6050_accelerometer_data_t mpu6050_accelerometer_calibration(const mpu6050_accelerometer_data_t*, mpu6050_accelerometer_data_t*);
+
+mpu6050_status_t mpu6050_configure_low_pass_filter(I2C_HandleTypeDef*, uint8_t);
 
 #endif // INC_MPU6050_H_
