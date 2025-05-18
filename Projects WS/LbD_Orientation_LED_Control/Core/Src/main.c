@@ -24,7 +24,8 @@
 
 // #include <math.h>
 // #include "kalman_filter.h"
-// #include "mpu6050.h"
+#include "mpu6050.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -43,6 +44,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
+
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
@@ -53,6 +56,7 @@ TIM_HandleTypeDef htim2;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
 
 long map(long x, long in_min, long in_max, long out_min, long out_max) {
@@ -75,12 +79,10 @@ void change_pwm_duty_cycle(uint32_t pwm_pulse, uint8_t channel) {
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-// TODO: Connect the MPU6050 sensor
-// TODO: Debug MPU6050 connection
 // TODO: Calculate the error offset using CubeMonitor - xIdeal: 0, yIdeal: 0, zIdeal: 16 384
 // TODO: offset = raw - ideal
 // TODO: Visualize raw and filtered angle using CubeMonitor
-// extern uint32_t g_counter;
+
 // mpu6050_accelerometer_data_t g_accelerometer_data;
 // const mpu6050_accelerometer_data_t error_offset = { .x = 0, .y = 0, .z = 0 };
 // int16_t roll_angle, kalman_roll_angle;
@@ -92,7 +94,6 @@ void change_pwm_duty_cycle(uint32_t pwm_pulse, uint8_t channel) {
  * @retval int
  */
 int main(void) {
-
 	/* USER CODE BEGIN 1 */
 
 	/* USER CODE END 1 */
@@ -116,17 +117,15 @@ int main(void) {
 	/* Initialize all configured peripherals */
 	MX_GPIO_Init();
 	MX_TIM2_Init();
+	MX_I2C1_Init();
 	/* USER CODE BEGIN 2 */
 
 	// KalmanFilter kf;
 	// kalman_filter_init(&kf);
-	/*
-	 if (mpu6050_init(&hi2c1, MPU6050_I2C_ADDRESS) != MPU6050_OK) {
-	 Error_Handler();
-	 }
-	 */
+	if (mpu6050_init(&hi2c1, MPU6050_I2C_ADDRESS) != MPU6050_OK) {
+		Error_Handler();
+	}
 
-	// __HAL_TIM_ENABLE_IT(&htim2, TIM_IT_UPDATE);
 	if (HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1) != HAL_OK) {
 		Error_Handler();
 	}
@@ -141,7 +140,6 @@ int main(void) {
 	/* USER CODE BEGIN WHILE */
 
 	// uint32_t previous_tick = HAL_GetTick();
-
 	while (1) {
 		/* USER CODE END WHILE */
 
@@ -151,8 +149,6 @@ int main(void) {
 		 uint32_t current_tick = HAL_GetTick();
 		 dt = (current_tick - previous_tick) / 1000.0f;
 		 previous_tick = current_tick;
-
-		 g_counter = __HAL_TIM_GET_COUNTER(&htim2);
 		 */
 
 		/*
@@ -169,20 +165,6 @@ int main(void) {
 		 uint32_t pwm_pulse = map(kalman_roll_angle, MIN_POS_ANGLE, MAX_POS_ANGLE, MIN_PWM_PULSE, MAX_PWM_PULSE);
 		 change_pwm_duty_cycle(pwm_pulse, channel);
 		 */
-
-		change_pwm_duty_cycle(0, TIM_CHANNEL_1);
-		change_pwm_duty_cycle(0, TIM_CHANNEL_2);
-		HAL_Delay(1000);
-
-		for (int i=0; i<=1000; i=i+100) {
-			change_pwm_duty_cycle(i, TIM_CHANNEL_1);
-			change_pwm_duty_cycle(1000 - i, TIM_CHANNEL_2);
-			HAL_Delay(250);
-		}
-
-		change_pwm_duty_cycle(1000, TIM_CHANNEL_1);
-		change_pwm_duty_cycle(1000, TIM_CHANNEL_2);
-		HAL_Delay(1000);
 	}
 
 	/* USER CODE END 3 */
@@ -223,6 +205,38 @@ void SystemClock_Config(void) {
 	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK) {
 		Error_Handler();
 	}
+}
+
+/**
+ * @brief I2C1 Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_I2C1_Init(void) {
+
+	/* USER CODE BEGIN I2C1_Init 0 */
+
+	/* USER CODE END I2C1_Init 0 */
+
+	/* USER CODE BEGIN I2C1_Init 1 */
+
+	/* USER CODE END I2C1_Init 1 */
+	hi2c1.Instance = I2C1;
+	hi2c1.Init.ClockSpeed = 100000;
+	hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+	hi2c1.Init.OwnAddress1 = 0;
+	hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+	hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+	hi2c1.Init.OwnAddress2 = 0;
+	hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+	hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+	if (HAL_I2C_Init(&hi2c1) != HAL_OK) {
+		Error_Handler();
+	}
+	/* USER CODE BEGIN I2C1_Init 2 */
+
+	/* USER CODE END I2C1_Init 2 */
+
 }
 
 /**
@@ -293,6 +307,7 @@ static void MX_GPIO_Init(void) {
 
 	/* GPIO Ports Clock Enable */
 	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOB_CLK_ENABLE();
 
 	/* USER CODE BEGIN MX_GPIO_Init_2 */
 	/* USER CODE END MX_GPIO_Init_2 */

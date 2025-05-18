@@ -1,4 +1,3 @@
-/*
 #include "mpu6050.h"
 
 static uint8_t mpu6050_i2c_address;
@@ -84,4 +83,3 @@ mpu6050_status_t mpu6050_configure_low_pass_filter(I2C_HandleTypeDef *hi2c, uint
 
 	return MPU6050_OK;
 }
-*/

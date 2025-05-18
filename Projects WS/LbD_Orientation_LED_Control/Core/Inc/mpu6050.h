@@ -1,4 +1,3 @@
-/*
 #ifndef INC_MPU6050_H_
 #define INC_MPU6050_H_
 
@@ -40,4 +39,3 @@ mpu6050_accelerometer_data_t mpu6050_accelerometer_calibration(const mpu6050_acc
 mpu6050_status_t mpu6050_configure_low_pass_filter(I2C_HandleTypeDef*, uint8_t);
 
 #endif // INC_MPU6050_H_
-*/
