@@ -1,0 +1,31 @@
+*---------------------------------------------------------------------*
+|                                RTOS                                 |
+*---------------------------------------------------------------------*
+
+-> What is FreeRTOS?
+    - An open-source real-time operating system (RTOS) designed for embedded systems and microcontrollers.
+
+-> Why FreeRTOS?
+    - FreeRTOS is ported to many important processor architectures:
+        + ARM Cortex-M, ARM Cortex-A
+        + AVR, PIC
+        + ESP32
+        + RISC-V
+        + ...
+
+    - FreeRTOS provides a kernel and various kernel-related services designed specifically for real-time applications.
+    - These services help manage timing, synchronization, and coordination of tasks in an embedded system:
+        + Task management
+        + Time management
+        + Memory management
+        + Task notifications
+        + Software timers (one-shot and periodic timers)
+        + Intertask communication (Queues, Semaphores, Mutexes)
+        + Event groups (a way to synchronize tasks based on multiple events)
+
+-> How to use FreeRTOS in your project?
+    - Download and integrate manually from the FreeRTOS website
+    or
+    - Use CMSIS-FreeRTOS from ARM
+    or
+    - Using STM32CubeIDE
