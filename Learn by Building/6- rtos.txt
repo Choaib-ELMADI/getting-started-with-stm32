@@ -28,4 +28,12 @@
     or
     - Use CMSIS-FreeRTOS from ARM
     or
-    - Using STM32CubeIDE
+    - Using STM32CubeIDE/MX
+
+*---------------------------------------------------------------------*
+|                               TIMERS                                |
+*---------------------------------------------------------------------*
+
+- When using FreeRTOS with STM32Cube, it is recommended to configure two hardware timers to avoid conflicts:
+    + SysTick Timer for FreeRTOS    : generates the time base for the FreeRTOS kernel, and allows it to handle tasks scheduling, delays and timeouts.
+    + Timer Peripheral for Cube HAL : generates the time base for the Cube HAL, handles HAL-specific time functions, and other time-based operations.
