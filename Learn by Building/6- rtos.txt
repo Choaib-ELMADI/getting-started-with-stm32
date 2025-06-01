@@ -37,3 +37,29 @@
 - When using FreeRTOS with STM32Cube, it is recommended to configure two hardware timers to avoid conflicts:
     + SysTick Timer for FreeRTOS    : generates the time base for the FreeRTOS kernel, and allows it to handle tasks scheduling, delays and timeouts.
     + Timer Peripheral for Cube HAL : generates the time base for the Cube HAL, handles HAL-specific time functions, and other time-based operations.
+
+*---------------------------------------------------------------------*
+|                       STACK AND HEAP SETTINGS                       |
+*---------------------------------------------------------------------*
+
+- These are the memory-related settings to consider when configuring a FreeRTOS project:
+    + Stack size setting of the FreeRTOS project
+    + Heap size setting of the FreeRTOS project
+    + Stack size setting of individual tasks
+
+- RAM memory layout in STM32 microcontrollers is structured as follows:
+    -> RAM_START = 0x20000000, RAM_END = 0x20009FFF, TOTAL_RAM = 40 KBytes = 40960 bytes
+    >> RAM is consumed by multiple memory segments:
+        + Stack
+        + Heap
+        + Data segment (global and static variables)
+
+    -> STACK_START = 0x20009FFF + 1, STACK_END = 0x20009C00, _Min_Stack_Size configurable parameter
+    >> The stack is used by the main program and the interrupt service rountines (ISRs).
+    >> It's used before the FreeRTOS scheduler is started, and for any code that runs outside of FreeRTOS tasks.
+
+    -> HEAP_START = 0x20009A00, HEAP_END = 0x20009BFF, _Min_Heap_Size configurable parameter
+    >> The heap is used by the C standard library (newlib or newlib-nano) for dynamic memory allocation.
+
+//     -> FreeRTOS Heap
+//
