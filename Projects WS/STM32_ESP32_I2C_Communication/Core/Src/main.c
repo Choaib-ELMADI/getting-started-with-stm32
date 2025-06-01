@@ -22,6 +22,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include <stdio.h>
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -52,12 +54,23 @@ static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
 
+int _write(int file, char *ptr, int len) {
+	(void) file;
+	int DataIdx;
+
+	for (DataIdx = 0; DataIdx < len; DataIdx++) {
+		ITM_SendChar(*ptr++);
+	}
+	return len;
+}
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint8_t data[11] = "Hello ESP32";
+uint8_t data[13] = "Hello, ESP32!";
+uint8_t rxData[10];
 
 /* USER CODE END 0 */
 
@@ -98,6 +111,9 @@ int main(void) {
 
 	while (1) {
 		HAL_I2C_Master_Transmit(&hi2c1, 0x42 << 1, data, sizeof(data), HAL_MAX_DELAY);
+		HAL_Delay(500);
+		HAL_I2C_Master_Receive(&hi2c1, 0x42 << 1, rxData, sizeof(rxData), HAL_MAX_DELAY);
+		printf("%s\n", rxData);
 		HAL_Delay(500);
 
 		/* USER CODE END WHILE */

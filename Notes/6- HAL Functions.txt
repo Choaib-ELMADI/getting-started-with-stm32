@@ -45,3 +45,4 @@ HAL_UART_Receive(&huart2, buffer, size, timeout);   --> Receive buffer data usin
 *-------------------------------------------------*
 
 HAL_I2C_Master_Transmit(&hi2c1, address << 1, data, sizeof(data), HAL_MAX_DELAY);
+HAL_I2C_Master_Receive(&hi2c1, address << 1, rxData, sizeof(rxData), HAL_MAX_DELAY);
