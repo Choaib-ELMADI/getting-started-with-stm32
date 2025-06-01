@@ -39,3 +39,9 @@ __HAL_TIM_SET_COMPARE(&htim, channel, pwm_pulse);   --> Set a TIMER channel sign
 
 HAL_UART_Transmit(&huart2, data, size, timeout);    --> Transmit data using the USART2 peripheral
 HAL_UART_Receive(&huart2, buffer, size, timeout);   --> Receive buffer data using the USART2 peripheral
+
+*-------------------------------------------------*
+|                       I2C                       |
+*-------------------------------------------------*
+
+HAL_I2C_Master_Transmit(&hi2c1, address << 1, data, sizeof(data), HAL_MAX_DELAY);
