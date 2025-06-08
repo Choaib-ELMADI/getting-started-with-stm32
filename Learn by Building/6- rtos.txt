@@ -61,5 +61,14 @@
     -> HEAP_START = 0x20009A00, HEAP_END = 0x20009BFF, _Min_Heap_Size configurable parameter
     >> The heap is used by the C standard library (newlib or newlib-nano) for dynamic memory allocation.
 
-//     -> FreeRTOS Heap
-//
+    -> 
+    >> FreeRTOS Heap is used exclusively by FreeRTOS for its own dynamic memory allocation needs.
+    >> It's configured using the configTOTAL_HEAP_SIZE macro in the FreeRTOSConfig.h file.
+    >> FreeRTOS uses this heap to allocate memory for tasks, queues, semaphores and other kernel objects.
+    >> heap_x.c of FreeRTOS will manage this heap memory.
+
+    -> 
+    >> Each FreeRTOS task has its dedicated stack memory and task control block (TCB).
+    >> The stack memory holds local variables, task context, and function call context.
+    >> The TCB holds tasks metadata.
+    >> These can be allocated dynamically from the FreeRTOS heap or statically from a pre-allocated global section.
