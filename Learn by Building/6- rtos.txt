@@ -72,10 +72,3 @@
     >> The stack memory holds local variables, task context, and function call context.
     >> The TCB holds tasks metadata.
     >> These can be allocated dynamically from the FreeRTOS heap or statically from a pre-allocated global section.
-
-*---------------------------------------------------------------------*
-|                          TASKS PRIORITIES                           |
-*---------------------------------------------------------------------*
-
-- In FreeRTOS, each task is assigned a priority from 0 to (configMAX_PRIORITIES - 1).
-- The configMAX_PRIORITIES macro is defined in the FreeRTOSConfig.h file and specifies the total number of available priority levels.

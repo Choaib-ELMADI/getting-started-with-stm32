@@ -1,0 +1,14 @@
+*---------------------------------------------------------------------*
+|                          TASKS PRIORITIES                           |
+*---------------------------------------------------------------------*
+
+- In FreeRTOS, each task is assigned a priority from 0 to (configMAX_PRIORITIES - 1).
+- The configMAX_PRIORITIES macro is defined in the FreeRTOSConfig.h file and specifies the total number of available priority levels.
+
+*---------------------------------------------------------------------*
+|                         IMPLEMENTING TASKS                          |
+*---------------------------------------------------------------------*
+
+1. Enable FreeRTOS in CubeMX
+2. Create tasks and generate their code
+3. Edit / Update tasks logic code

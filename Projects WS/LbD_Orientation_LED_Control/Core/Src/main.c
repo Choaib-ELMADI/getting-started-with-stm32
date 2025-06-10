@@ -53,6 +53,16 @@ TIM_HandleTypeDef htim2;
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = { .name = "defaultTask", .stack_size = 128 * 4, .priority =
 		(osPriority_t) osPriorityNormal, };
+
+/* Definitions for readSensorTask */
+osThreadId_t readSensorTaskHandle;
+const osThreadAttr_t readSensorTask_attributes = { .name = "readSensorTask", .stack_size = 128 * 4, .priority =
+		(osPriority_t) osPriorityNormal, };
+
+/* Definitions for pwmControlTask */
+osThreadId_t pwmControlTaskHandle;
+const osThreadAttr_t pwmControlTask_attributes = { .name = "pwmControlTask", .stack_size = 128 * 4, .priority =
+		(osPriority_t) osPriorityNormal, };
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -63,6 +73,8 @@ static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_I2C1_Init(void);
 void StartDefaultTask(void *argument);
+void Read_Sensor_Task(void *argument);
+void PWM_Control_Task(void *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -86,10 +98,7 @@ void change_pwm_duty_cycle(uint32_t pwm_pulse, uint8_t channel) {
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-mpu6050_accelerometer_data_t g_accelerometer_data;
 const mpu6050_accelerometer_data_t error_offset = { .x = 112, .y = 164, .z = 1996 };
-int16_t roll_angle, kalman_roll_angle;
-float dt = 0;
 
 /* USER CODE END 0 */
 
@@ -164,6 +173,12 @@ int main(void) {
 	/* creation of defaultTask */
 	defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
+	/* creation of readSensorTask */
+	readSensorTaskHandle = osThreadNew(Read_Sensor_Task, NULL, &readSensorTask_attributes);
+
+	/* creation of pwmControlTask */
+	pwmControlTaskHandle = osThreadNew(PWM_Control_Task, NULL, &pwmControlTask_attributes);
+
 	/* USER CODE BEGIN RTOS_THREADS */
 	/* add threads, ... */
 	/* USER CODE END RTOS_THREADS */
@@ -179,32 +194,11 @@ int main(void) {
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-
-	uint32_t previous_tick = HAL_GetTick();
-
 	while (1) {
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-
-		uint32_t current_tick = HAL_GetTick();
-		dt = (current_tick - previous_tick) / 1000.0f;
-		previous_tick = current_tick;
-
-		if (mpu6050_read_accelerometer_data(&hi2c1, MPU6050_I2C_ADDRESS, &g_accelerometer_data) != MPU6050_OK) {
-			Error_Handler();
-		}
-
-		g_accelerometer_data = mpu6050_accelerometer_calibration(&error_offset, &g_accelerometer_data);
-		roll_angle = atan2(g_accelerometer_data.y, g_accelerometer_data.z) * (180.0 / M_PI);
-		kalman_roll_angle = (int16_t) kalman_filter_get_angle(&kf, roll_angle, dt);
-
-		uint8_t channel = (kalman_roll_angle < 0) ? TIM_CHANNEL_1 : TIM_CHANNEL_2;
-		kalman_roll_angle = (kalman_roll_angle < 0) ? -kalman_roll_angle : kalman_roll_angle;
-		uint32_t pwm_pulse = map(kalman_roll_angle, MIN_POS_ANGLE, MAX_POS_ANGLE, MIN_PWM_PULSE, MAX_PWM_PULSE);
-		change_pwm_duty_cycle(pwm_pulse, channel);
 	}
-
 	/* USER CODE END 3 */
 }
 
@@ -369,6 +363,64 @@ void StartDefaultTask(void *argument) {
 		osDelay(1);
 	}
 	/* USER CODE END 5 */
+}
+
+/* USER CODE BEGIN Header_Read_Sensor_Task */
+/**
+ * @brief Function implementing the readSensorTask thread.
+ * @param argument: Not used
+ * @retval None
+ */
+/* USER CODE END Header_Read_Sensor_Task */
+void Read_Sensor_Task(void *argument) {
+	/* USER CODE BEGIN Read_Sensor_Task */
+
+	mpu6050_accelerometer_data_t accelerometer_data;
+
+	for (;;) {
+		if (mpu6050_read_accelerometer_data(&hi2c1, MPU6050_I2C_ADDRESS, &accelerometer_data) != MPU6050_OK) {
+			Error_Handler();
+		}
+		accelerometer_data = mpu6050_accelerometer_calibration(&error_offset, &accelerometer_data);
+		// TODO: SEND NOTIFICATION TO THE PWM CONTROL TASK
+		// TODO: ENTER BLOCKED STATE
+	}
+
+	/* USER CODE END Read_Sensor_Task */
+}
+
+/* USER CODE BEGIN Header_PWM_Control_Task */
+/**
+ * @brief Function implementing the pwmControlTask thread.
+ * @param argument: Not used
+ * @retval None
+ */
+/* USER CODE END Header_PWM_Control_Task */
+void PWM_Control_Task(void *argument) {
+	/* USER CODE BEGIN PWM_Control_Task */
+
+	mpu6050_accelerometer_data_t accelerometer_data;
+	int16_t roll_angle, kalman_roll_angle;
+	float dt = 0;
+	uint32_t previous_tick = HAL_GetTick();
+
+	for (;;) {
+		// TODO: WAKES UP ON NOTIFICATION
+		uint32_t current_tick = HAL_GetTick();
+		dt = (current_tick - previous_tick) / 1000.0f;
+		previous_tick = current_tick;
+
+		roll_angle = atan2(accelerometer_data.y, accelerometer_data.z) * (180.0 / M_PI);
+		kalman_roll_angle = (int16_t) kalman_filter_get_angle(&kf, roll_angle, dt);
+
+		uint8_t channel = (kalman_roll_angle < 0) ? TIM_CHANNEL_1 : TIM_CHANNEL_2;
+		kalman_roll_angle = (kalman_roll_angle < 0) ? -kalman_roll_angle : kalman_roll_angle;
+		uint32_t pwm_pulse = map(kalman_roll_angle, MIN_POS_ANGLE, MAX_POS_ANGLE, MIN_PWM_PULSE, MAX_PWM_PULSE);
+		change_pwm_duty_cycle(pwm_pulse, channel);
+		// TODO: ENTER BLOCKED STATE
+	}
+
+	/* USER CODE END PWM_Control_Task */
 }
 
 /**
