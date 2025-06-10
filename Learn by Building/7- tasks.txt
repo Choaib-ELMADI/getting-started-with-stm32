@@ -12,3 +12,15 @@
 1. Enable FreeRTOS in CubeMX
 2. Create tasks and generate their code
 3. Edit / Update tasks logic code
+
+*---------------------------------------------------------------------*
+|                         TASKS NOTIFICATIONS                         |
+*---------------------------------------------------------------------*
+
+-> Direct task notifications:
+    - Direct task notifications allow tasks to signal each other with a 32-bit value.
+    - Key functions:
+        + xTaskNotify()         -> Notify a task from another task.
+        + xTaskNotifyFromISR()  -> Notify a task from an ISR.
+        + xTaskNotifyWait()     -> Wait for a notification.
+        + ulTaskNotifyTake()    -> Block to wait for a notification and decrement the notification value.

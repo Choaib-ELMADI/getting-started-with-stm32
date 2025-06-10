@@ -133,9 +133,6 @@ int main(void) {
 	MX_I2C1_Init();
 	/* USER CODE BEGIN 2 */
 
-	KalmanFilter kf;
-	kalman_filter_init(&kf);
-
 	if (mpu6050_init(&hi2c1, MPU6050_I2C_ADDRESS) != MPU6050_OK) {
 		Error_Handler();
 	}
@@ -376,14 +373,21 @@ void Read_Sensor_Task(void *argument) {
 	/* USER CODE BEGIN Read_Sensor_Task */
 
 	mpu6050_accelerometer_data_t accelerometer_data;
+	uint32_t yz_accelerometer_data;
 
 	for (;;) {
+		// READ SENSOR DATA
 		if (mpu6050_read_accelerometer_data(&hi2c1, MPU6050_I2C_ADDRESS, &accelerometer_data) != MPU6050_OK) {
 			Error_Handler();
 		}
 		accelerometer_data = mpu6050_accelerometer_calibration(&error_offset, &accelerometer_data);
-		// TODO: SEND NOTIFICATION TO THE PWM CONTROL TASK
-		// TODO: ENTER BLOCKED STATE
+		yz_accelerometer_data = (accelerometer_data.z << 16) | accelerometer_data.y;
+
+		// SEND NOTIFICATION TO THE PWM CONTROL TASK
+		xTaskNotify((TaskHandle_t)pwmControlTaskHandle, yz_accelerometer_data, eSetValueWithOverwrite);
+
+		// ENTER BLOCKED STATE
+		xTaskNotifyWait(0, 0, NULL, portMAX_DELAY);
 	}
 
 	/* USER CODE END Read_Sensor_Task */
@@ -402,11 +406,22 @@ void PWM_Control_Task(void *argument) {
 	mpu6050_accelerometer_data_t accelerometer_data;
 	int16_t roll_angle, kalman_roll_angle;
 	float dt = 0;
-	uint32_t previous_tick = HAL_GetTick();
+	uint32_t previous_tick = osKernelGetTickCount();
+	uint32_t yz_accelerometer_data;
+
+	KalmanFilter kf;
+	kalman_filter_init(&kf);
 
 	for (;;) {
-		// TODO: WAKES UP ON NOTIFICATION
-		uint32_t current_tick = HAL_GetTick();
+		// WAKES UP ON NOTIFICATION
+		// ENTER BLOCKED STATE
+		xTaskNotifyWait(0, ULONG_MAX, &yz_accelerometer_data, portMAX_DELAY);
+
+		// EXTRACT RECEIVED DATA
+		accelerometer_data.y = (uint16_t)(yz_accelerometer_data);
+		accelerometer_data.z = (uint16_t)(yz_accelerometer_data >> 16);
+
+		uint32_t current_tick = osKernelGetTickCount();
 		dt = (current_tick - previous_tick) / 1000.0f;
 		previous_tick = current_tick;
 
@@ -417,7 +432,9 @@ void PWM_Control_Task(void *argument) {
 		kalman_roll_angle = (kalman_roll_angle < 0) ? -kalman_roll_angle : kalman_roll_angle;
 		uint32_t pwm_pulse = map(kalman_roll_angle, MIN_POS_ANGLE, MAX_POS_ANGLE, MIN_PWM_PULSE, MAX_PWM_PULSE);
 		change_pwm_duty_cycle(pwm_pulse, channel);
-		// TODO: ENTER BLOCKED STATE
+
+		// ENTER BLOCKED STATE
+		xTaskNotifyWait(0, ULONG_MAX, &yz_accelerometer_data, portMAX_DELAY);
 	}
 
 	/* USER CODE END PWM_Control_Task */
