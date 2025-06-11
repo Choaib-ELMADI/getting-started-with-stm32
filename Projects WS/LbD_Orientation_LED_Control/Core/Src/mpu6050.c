@@ -83,3 +83,15 @@ mpu6050_status_t mpu6050_configure_low_pass_filter(I2C_HandleTypeDef *hi2c, uint
 
 	return MPU6050_OK;
 }
+
+mpu6050_status_t mpu6050_interrupt_config(I2C_HandleTypeDef *hi2c, mpu6050_interrupt_config_t level) {
+
+}
+
+mpu6050_status_t mpu6050_enable_interrupt(I2C_HandleTypeDef *hi2c, mpu6050_interrupt_t interrupt) {
+
+}
+
+mpu6050_status_t mpu6050_disable_interrupt(I2C_HandleTypeDef *hi2c, mpu6050_interrupt_t interrupt) {
+
+}

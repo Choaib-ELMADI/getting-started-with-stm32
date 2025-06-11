@@ -26,6 +26,19 @@ typedef struct {
 	int16_t z;
 } mpu6050_accelerometer_data_t;
 
+typedef enum {
+    INT_LEVEL_ACTIVE_HIGH = 0x00,
+    INT_LEVEL_ACTIVE_LOW
+} mpu6050_interrupt_config_t;
+
+typedef enum {
+    RAW_RDY_INT    = 0x01,
+    I2C_MST_INT    = 0x08,
+    FIFO_OFLOW_INT = 0x10,
+    MOT_INT        = 0x40,
+    ALL_INT        = 0xFF
+} mpu6050_interrupt_t;
+
 mpu6050_status_t mpu6050_read(I2C_HandleTypeDef*, uint8_t, uint8_t*, uint32_t);
 
 mpu6050_status_t mpu6050_write_byte(I2C_HandleTypeDef*, uint8_t, uint8_t);
@@ -37,5 +50,11 @@ mpu6050_status_t mpu6050_read_accelerometer_data(I2C_HandleTypeDef*, uint8_t, mp
 mpu6050_accelerometer_data_t mpu6050_accelerometer_calibration(const mpu6050_accelerometer_data_t*, mpu6050_accelerometer_data_t*);
 
 mpu6050_status_t mpu6050_configure_low_pass_filter(I2C_HandleTypeDef*, uint8_t);
+
+mpu6050_status_t mpu6050_interrupt_config(I2C_HandleTypeDef*, mpu6050_interrupt_config_t);
+
+mpu6050_status_t mpu6050_enable_interrupt(I2C_HandleTypeDef*, mpu6050_interrupt_t);
+
+mpu6050_status_t mpu6050_disable_interrupt(I2C_HandleTypeDef*, mpu6050_interrupt_t);
 
 #endif // INC_MPU6050_H_

@@ -61,6 +61,9 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define MPU6050_INT_Pin GPIO_PIN_8
+#define MPU6050_INT_GPIO_Port GPIOA
+#define MPU6050_INT_EXTI_IRQn EXTI9_5_IRQn
 #define MPU6050_SCL_Pin GPIO_PIN_6
 #define MPU6050_SCL_GPIO_Port GPIOB
 #define MPU6050_SDA_Pin GPIO_PIN_7
