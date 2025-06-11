@@ -9,6 +9,8 @@
 #define MPU6050_CONFIG_REG				((uint8_t)26)
 #define MPU6050_I2C_ADDRESS				0x68
 #define I2C_TIMEOUT                 	10UL
+#define MPU6050_REG_INT_PIN_CFG         ((uint8_t)55)
+#define MPU6050_REG_INT_EN              ((uint8_t)56)
 
 #define MAX_POS_ANGLE					90
 #define MIN_POS_ANGLE					0

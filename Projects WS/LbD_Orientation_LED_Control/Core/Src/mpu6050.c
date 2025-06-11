@@ -85,13 +85,38 @@ mpu6050_status_t mpu6050_configure_low_pass_filter(I2C_HandleTypeDef *hi2c, uint
 }
 
 mpu6050_status_t mpu6050_interrupt_config(I2C_HandleTypeDef *hi2c, mpu6050_interrupt_config_t level) {
+    uint8_t int_cfg = 0;
 
+    if (mpu6050_read(hi2c, MPU6050_REG_INT_PIN_CFG, &int_cfg, 1) != MPU6050_OK) {
+        return MPU6050_ERROR;
+    }
+
+    int_cfg &= ~0x80;
+    int_cfg |= (uint8_t)level;
+
+    return mpu6050_write_byte(hi2c, MPU6050_REG_INT_PIN_CFG, int_cfg);
 }
 
 mpu6050_status_t mpu6050_enable_interrupt(I2C_HandleTypeDef *hi2c, mpu6050_interrupt_t interrupt) {
+    uint8_t int_current_settings = 0;
 
+    if (mpu6050_read(hi2c, MPU6050_REG_INT_EN, &int_current_settings, 1) != MPU6050_OK) {
+        return MPU6050_ERROR;
+    }
+
+    int_current_settings |= (uint8_t)interrupt;
+
+    return mpu6050_write_byte(hi2c, MPU6050_REG_INT_EN, int_current_settings);
 }
 
 mpu6050_status_t mpu6050_disable_interrupt(I2C_HandleTypeDef *hi2c, mpu6050_interrupt_t interrupt) {
+    uint8_t int_current_settings = 0;
 
+    if (interrupt != ALL_INT) {
+        mpu6050_read(hi2c, MPU6050_REG_INT_EN, &int_current_settings, 1);
+    }
+
+    int_current_settings &= ~(uint8_t)interrupt;
+
+    return mpu6050_write_byte(hi2c, MPU6050_REG_INT_EN, int_current_settings);
 }
