@@ -57,11 +57,11 @@ const osThreadAttr_t defaultTask_attributes = { .name = "defaultTask", .stack_si
 /* Definitions for readSensorTask */
 osThreadId_t readSensorTaskHandle;
 const osThreadAttr_t readSensorTask_attributes = { .name = "readSensorTask", .stack_size = 128 * 4, .priority =
-		(osPriority_t) osPriorityNormal, };
+		(osPriority_t) osPriorityAboveNormal, };
 /* Definitions for pwmControlTask */
 osThreadId_t pwmControlTaskHandle;
 const osThreadAttr_t pwmControlTask_attributes = { .name = "pwmControlTask", .stack_size = 128 * 4, .priority =
-		(osPriority_t) osPriorityNormal, };
+		(osPriority_t) osPriorityHigh, };
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -93,18 +93,20 @@ void change_pwm_duty_cycle(uint32_t pwm_pulse, uint8_t channel) {
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-    if (GPIO_Pin == MPU6050_INT_Pin) {
-        mpu6050_interrupt_handle(&hi2c1);
-    }
+	if (GPIO_Pin == MPU6050_INT_Pin) {
+		mpu6050_interrupt_handle(&hi2c1);
+	}
 }
 
 void mpu6050_raw_data_ready_callback(void) {
-    BaseType_t pxHigherPriorityTaskWoken;
-    pxHigherPriorityTaskWoken = pdFALSE;
+	BaseType_t pxHigherPriorityTaskWoken;
+	pxHigherPriorityTaskWoken = pdFALSE;
 
-    xTaskNotifyFromISR((TaskHandle_t)readSensorTaskHandle, 0, eNoAction, &pxHigherPriorityTaskWoken);
+	if (readSensorTaskHandle) {
+		xTaskNotifyFromISR((TaskHandle_t )readSensorTaskHandle, 0, eNoAction, &pxHigherPriorityTaskWoken);
+	}
 
-    portYIELD_FROM_ISR(pxHigherPriorityTaskWoken);
+	portYIELD_FROM_ISR(pxHigherPriorityTaskWoken);
 }
 
 /* USER CODE END PFP */
