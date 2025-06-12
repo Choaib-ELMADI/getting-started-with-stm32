@@ -120,3 +120,41 @@ mpu6050_status_t mpu6050_disable_interrupt(I2C_HandleTypeDef *hi2c, mpu6050_inte
 
     return mpu6050_write_byte(hi2c, MPU6050_REG_INT_EN, int_current_settings);
 }
+
+static mpu6050_status_t get_interrupt_status(I2C_HandleTypeDef *hi2c, uint8_t *status) {
+    if (mpu6050_read(hi2c, MPU6050_REG_INT_STATUS, status, 1) != MPU6050_OK) {
+        return MPU6050_ERROR;
+    }
+
+    return MPU6050_OK;
+}
+
+static mpu6050_status_t get_interrupt_settings(I2C_HandleTypeDef *hi2c, uint8_t *status) {
+    if (mpu6050_read(hi2c, MPU6050_REG_INT_EN, status, 1) != MPU6050_OK) {
+        return MPU6050_ERROR;
+    }
+
+    return MPU6050_OK;
+}
+
+mpu6050_status_t mpu6050_interrupt_handle(I2C_HandleTypeDef *hi2c) {
+    uint8_t int_status = 0;
+    uint8_t int_settings = 0;
+
+    get_interrupt_status(hi2c, &int_status);
+    get_interrupt_settings(hi2c, &int_settings);
+
+    if ((int_settings & MOT_INT) && (int_status & MOT_INT)) {
+        mpu6050_motion_detection_callback();
+    } else if ((int_settings & RAW_RDY_INT) && (int_status & RAW_RDY_INT)) {
+        mpu6050_raw_data_ready_callback();
+    } else {
+        // TODO:
+    }
+
+    return MPU6050_OK;
+}
+
+__weak void mpu6050_motion_detection_callback(void) {}
+
+__weak void mpu6050_raw_data_ready_callback(void) {}

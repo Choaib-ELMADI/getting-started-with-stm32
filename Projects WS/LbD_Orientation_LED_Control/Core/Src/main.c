@@ -92,6 +92,21 @@ void change_pwm_duty_cycle(uint32_t pwm_pulse, uint8_t channel) {
 	__HAL_TIM_SET_COMPARE(&htim2, channel, pwm_pulse);
 }
 
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+    if (GPIO_Pin == MPU6050_INT_Pin) {
+        mpu6050_interrupt_handle(&hi2c1);
+    }
+}
+
+void mpu6050_raw_data_ready_callback(void) {
+    BaseType_t pxHigherPriorityTaskWoken;
+    pxHigherPriorityTaskWoken = pdFALSE;
+
+    xTaskNotifyFromISR((TaskHandle_t)readSensorTaskHandle, 0, eNoAction, &pxHigherPriorityTaskWoken);
+
+    portYIELD_FROM_ISR(pxHigherPriorityTaskWoken);
+}
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -456,7 +471,6 @@ void PWM_Control_Task(void *argument) {
 		change_pwm_duty_cycle(pwm_pulse, channel);
 
 		// ENTER BLOCKED STATE
-		// xTaskNotifyWait(0, ULONG_MAX, &yz_accelerometer_data, portMAX_DELAY);
 	}
 
 	/* USER CODE END PWM_Control_Task */

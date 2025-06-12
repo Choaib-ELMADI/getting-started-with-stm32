@@ -11,6 +11,7 @@
 #define I2C_TIMEOUT                 	10UL
 #define MPU6050_REG_INT_PIN_CFG         ((uint8_t)55)
 #define MPU6050_REG_INT_EN              ((uint8_t)56)
+#define MPU6050_REG_INT_STATUS          ((uint8_t)58)
 
 #define MAX_POS_ANGLE					90
 #define MIN_POS_ANGLE					0
@@ -58,5 +59,11 @@ mpu6050_status_t mpu6050_interrupt_config(I2C_HandleTypeDef*, mpu6050_interrupt_
 mpu6050_status_t mpu6050_enable_interrupt(I2C_HandleTypeDef*, mpu6050_interrupt_t);
 
 mpu6050_status_t mpu6050_disable_interrupt(I2C_HandleTypeDef*, mpu6050_interrupt_t);
+
+mpu6050_status_t mpu6050_interrupt_handle(I2C_HandleTypeDef*);
+
+void mpu6050_motion_detection_callback(void);
+
+void mpu6050_raw_data_ready_callback(void);
 
 #endif // INC_MPU6050_H_
