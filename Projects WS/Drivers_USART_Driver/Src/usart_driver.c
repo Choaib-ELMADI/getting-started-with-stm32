@@ -23,10 +23,15 @@ void uart_tx_init(unsigned long baudrate) {
 	USART2->CR1 |= (1UL << 13);
 }
 
-void uart_transfer(unsigned char *data) {
-
+void uart_transfer(unsigned char *buffer) {
+	unsigned char i=0;
+	while (buffer[i] != '\0') {
+		uart_write(buffer[i]);
+		++i;
+	}
 }
 
 void uart_write(unsigned char data) {
-
+	while (!(USART2->SR & (1UL << 7)));
+	USART2->DR = (data & 0x00C000FF);
 }
