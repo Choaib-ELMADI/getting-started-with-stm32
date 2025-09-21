@@ -3,7 +3,8 @@
 #include "timer_interrupt_driver.h"
 
 int main(void) {
-	// Init...
+	led_init();
+	systick_timer_init();
 
 	while (1);
 
