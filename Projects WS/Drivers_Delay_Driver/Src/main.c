@@ -1,5 +1,3 @@
-#include <stdint.h>
-
 #include "delay_driver.h"
 #include "led_driver.h"
 
