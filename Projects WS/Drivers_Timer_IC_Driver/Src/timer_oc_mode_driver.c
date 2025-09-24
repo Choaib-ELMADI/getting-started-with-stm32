@@ -4,7 +4,7 @@ void timer_oc_mode_init(void) {
 	// Enable TIM2 clock
 	RCC->APB1ENR |= (1UL << 0);
 
-	// ARR and CNT registers on match action
+	// ARR and CNT registers on match action --> Toggle
 	TIM2->CCMR1 &= ~((1UL << 0) | (1UL << 1));
 	TIM2->CCMR1 |= (1UL << 4) | (1UL << 5);
 	TIM2->CCMR1 &= ~(1UL << 6);
