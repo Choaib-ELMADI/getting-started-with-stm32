@@ -6,10 +6,11 @@
 volatile uint32_t data = 0;
 
 int main(void) {
-	adc_one_shot_init();
+	// adc_one_shot_init();
+	adc_interrupt_init();
 
 	while (1) {
-		data = read_adc_value();
+		// data = read_adc_value();
 	}
 
 	return 0;
