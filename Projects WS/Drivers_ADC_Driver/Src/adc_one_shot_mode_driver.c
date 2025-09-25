@@ -29,7 +29,7 @@ void adc_one_shot_init(void) {
 	ADC1->CR2 |= (1UL << 0);
 
 	// Continuous conversion mode
-	ADC1->CR2 |= (1UL << 1);
+	// ADC1->CR2 |= (1UL << 1);
 }
 
 uint32_t read_adc_value(void) {
