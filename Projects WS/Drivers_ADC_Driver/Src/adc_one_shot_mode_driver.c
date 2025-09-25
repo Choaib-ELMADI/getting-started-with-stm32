@@ -1,6 +1,6 @@
-#include "adc_driver.h"
+#include "adc_one_shot_mode_driver.h"
 
-void adc_init(void) {
+void adc_one_shot_init(void) {
 	// ADC module  --> ADC1
 	// ADC channel --> IN1 = PA1
 
@@ -27,4 +27,18 @@ void adc_init(void) {
 
 	// Turn ON ADC
 	ADC1->CR2 |= (1UL << 0);
+
+	// Continuous conversion mode
+	ADC1->CR2 |= (1UL << 1);
+}
+
+uint32_t read_adc_value(void) {
+	// Start ADC conversion
+	ADC1->CR2 |= (1UL << 30);
+
+	// Wait for conversion to complete
+	while (!(ADC1->SR & (1UL << 1)));
+
+	// Read conversion reuslt
+	return ADC1->DR;
 }
