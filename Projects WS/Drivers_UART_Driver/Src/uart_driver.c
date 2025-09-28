@@ -77,3 +77,18 @@ void uart_rx_read(void) {
 	// Read a byte from USART2 bus
 	data = USART2->DR;
 }
+
+void uart_rx_interrupt_init(void) {
+	uart_rx_init();
+
+	// Enable RX interrupt
+	USART2->CR1 |= (1UL << 5);
+
+	// Enable NVIC
+	NVIC_EnableIRQ(USART2_IRQn);
+}
+
+void USART2_IRQHandler(void) {
+	uart_rx_read();
+	uart_tx_write(data);
+}
