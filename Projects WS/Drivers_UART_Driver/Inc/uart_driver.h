@@ -7,6 +7,8 @@
 #define SYSCLOCK 16000000
 
 void uart_tx_init(void);
+void uart_rx_init(void);
 void uart_tx_write(unsigned char);
+void uart_rx_read(void);
 
 #endif // UART_DRIVER_H_
