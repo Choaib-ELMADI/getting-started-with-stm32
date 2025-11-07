@@ -1,7 +1,7 @@
 #include "gpio_driver.h"
 
-void delay(void) {
-	for (int i=0; i<100000; ++i);
+void delay(unsigned long delay) {
+	for (int i=0; i<delay; ++i);
 }
 
 void gpio_init(void) {
@@ -37,27 +37,25 @@ void red_led_off(void) {
 void led_toggle(void) {
 	GPIOA_ODR ^= (1 << 5);
 	GPIOB_ODR ^= (1 << 9);
-	delay();
+	delay(500000);
 }
 
 void set_program_state(int *state) {
 	if (!(GPIOC_IDR & (1 << 13))) {
 		if (*state == OFF) {
 			*state = ON;
-		}
-		else if (*state == ON) {
+			delay(100000);
+		} else if (*state == ON) {
 			*state = OFF;
+			delay(100000);
 		}
-
-		delay();
 	}
 }
 void show_program_state(int *state) {
 	if (*state == OFF) {
 		red_led_on();
 		green_led_off();
-	}
-	else if (*state == ON) {
+	} else if (*state == ON) {
 		red_led_off();
 		green_led_on();
 	}

@@ -19,7 +19,7 @@
 #define GPIOC_IDR          (*(volatile unsigned int *)(GPIOC_PERI_BASE + GPIOC_IDR_OFFSET))
 #define RCC_AHB1ENR        (*(volatile unsigned int *)(RCC_PERI_BASE + RCC_AHB1ENR_OFFSET))
 
-void delay(void);
+void delay(unsigned long);
 
 void gpio_init(void);
 
