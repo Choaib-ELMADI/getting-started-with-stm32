@@ -18,6 +18,14 @@ void gpio_init(void) {
 	// Init user button: PC13 -> bits 27:26
 	RCC_AHB1ENR |= (1 << 2);
 	GPIOC_MODER &= ~((1 << 27) | (1 << 26));
+
+	// Init PA2 alternate function -> bits 5:4
+	GPIOA_MODER &= ~(1 << 4);
+	GPIOA_MODER |= (1 << 5);
+
+	// Init PA3 alternate function -> bits 7:6
+	GPIOA_MODER &= ~(1 << 6);
+	GPIOA_MODER |= (1 << 7);
 }
 
 void green_led_on(void) {
