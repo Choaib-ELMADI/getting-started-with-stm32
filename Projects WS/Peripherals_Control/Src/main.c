@@ -1,5 +1,11 @@
+#include "gpio_driver.h"
+
 int main(void) {
-	while (1) {}
+	gpio_init();
+
+	while (1) {
+		led_toggle();
+	}
 
 	return 0;
 }

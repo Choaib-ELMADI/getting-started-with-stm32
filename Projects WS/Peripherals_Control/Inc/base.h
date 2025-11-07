@@ -30,4 +30,9 @@
 #define UART_PERI_BASE    (APB1_PERI_BASE + UART_PERI_OFFSET)
 #define ADC_PERI_BASE     (APB2_PERI_BASE + ADC_PERI_OFFSET)
 
+enum State {
+	OFF = 48,
+	ON  = 49
+};
+
 #endif // BASE_H_
