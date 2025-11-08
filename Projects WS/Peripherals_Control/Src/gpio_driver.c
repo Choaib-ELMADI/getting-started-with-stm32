@@ -5,27 +5,32 @@ void delay(unsigned long delay) {
 }
 
 void gpio_init(void) {
-	// Init green led: PA5 -> bits 11:10
+	// Allow clock access to GPIOs
 	RCC_AHB1ENR |= (1 << 0);
-	GPIOA_MODER |= (1 << 10);
+	RCC_AHB1ENR |= (1 << 1);
+	RCC_AHB1ENR |= (1 << 2);
+
+	// Init green led: PA5 -> bits 11:10
 	GPIOA_MODER &= ~(1 << 11);
+	GPIOA_MODER |= (1 << 10);
 
 	// Init red led: PB9 -> bits 19:18
-	RCC_AHB1ENR |= (1 << 1);
-	GPIOB_MODER |= (1 << 18);
 	GPIOB_MODER &= ~(1 << 19);
+	GPIOB_MODER |= (1 << 18);
 
 	// Init user button: PC13 -> bits 27:26
-	RCC_AHB1ENR |= (1 << 2);
 	GPIOC_MODER &= ~((1 << 27) | (1 << 26));
 
 	// Init PA2 alternate function -> bits 5:4
-	GPIOA_MODER &= ~(1 << 4);
 	GPIOA_MODER |= (1 << 5);
+	GPIOA_MODER &= ~(1 << 4);
 
 	// Init PA3 alternate function -> bits 7:6
-	GPIOA_MODER &= ~(1 << 6);
 	GPIOA_MODER |= (1 << 7);
+	GPIOA_MODER &= ~(1 << 6);
+
+	// Init PA0 as analog input -> bits 1:0
+	GPIOA_MODER |= ((1 << 1) | (1 << 0));
 }
 
 void green_led_on(void) {

@@ -22,4 +22,12 @@
 #define RCC_APB2ENR_OFFSET (0x44)
 #define RCC_APB2ENR        (*(volatile unsigned int *)(RCC_PERI_BASE + RCC_APB2ENR_OFFSET))
 
+void adc_init(void);
+
+void adc_start_conversion(void);
+int adc_read(void);
+
+void sample_adc_signal(char*, int*);
+void transmit_adc_signal(char*);
+
 #endif // ADC_DRIVER_H_
