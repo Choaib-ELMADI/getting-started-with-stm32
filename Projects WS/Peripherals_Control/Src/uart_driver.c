@@ -35,7 +35,7 @@ void usart2_init(void) {
 
 void usart2_write(char data) {
 	while (!(USART_SR & SR_TXE)); // Keep looping if empty
-	USART_DR = data;
+	USART_DR = (uint8_t)data;
 }
 uint32_t usart2_read(void) {
 	while (!(USART_SR & SR_RXNE)); // Keep looping if empty

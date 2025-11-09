@@ -60,7 +60,7 @@ void sample_adc_signal(char *buffer, int *state) {
 		for (int i=0; i<64; ++i) {
 			adc_data = adc_read();
 			adc_data_first_byte = (adc_data & 0xFF);
-			*buffer++ = adc_data_first_byte;
+			*buffer++ = 0x55;
 		}
 
 		transmit_adc_signal(start_buffer);
